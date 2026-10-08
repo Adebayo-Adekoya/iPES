@@ -66,7 +66,6 @@ void main() {
     final titleField = find.byKey(const Key('field-title'));
     expect(tester.widget<TextField>(titleField).controller!.text, 'Service Contract - Borehole Drilling');
     await tester.enterText(titleField, 'Borehole drilling contract');
-    await tester.ensureVisible(find.byKey(const Key('accept-draft')));
     await tester.tap(find.byKey(const Key('accept-draft')));
     await tester.pumpAndSettle();
     expect(c.drafts, isEmpty);

@@ -103,7 +103,7 @@ class LibraryList extends StatelessWidget {
                 final year = RegExp(r'^\d{4}').firstMatch(r.text(Dc.date))?.group(0);
                 final by = [
                   if (r.texts(Dc.creator).isNotEmpty) r.texts(Dc.creator).first,
-                  if (year != null) year,
+                  ?year,
                   if (r.texts(Dc.creator).isEmpty && year == null) r.mediaType.label,
                 ].join(' · ');
                 return Card(

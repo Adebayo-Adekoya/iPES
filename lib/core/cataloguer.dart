@@ -155,6 +155,9 @@ class Cataloguer {
     if (ex.title != null && ex.title!.isNotEmpty && !_isJunkTitle(ex.title!)) {
       record.setOne(Dc.title, FieldValue(ex.title!, source: embeddedSource,
           confidence: embeddedSource == FieldSource.embedded ? 0.95 : 0.72));
+    } else if (fromName.creator != null && fromName.title != null) {
+      // "Author - Title (Year)" is a deliberate naming pattern: trust it.
+      record.setOne(Dc.title, FieldValue(fromName.title!, source: FieldSource.filename, confidence: 0.75));
     } else if (_firstLineTitle(text) != null) {
       record.setOne(Dc.title, FieldValue(_firstLineTitle(text)!, source: FieldSource.content, confidence: 0.68));
     } else if (fromName.title != null && fromName.title!.isNotEmpty) {
@@ -176,7 +179,7 @@ class Cataloguer {
     } else if (fromName.creator != null) {
       record.setOne(Dc.creator, FieldValue(fromName.creator!, source: FieldSource.filename, confidence: 0.7));
     } else {
-      final by = RegExp(r'^\s*(?:[Bb]y|[Aa]uthor:)\s+([A-Z][\w.\-’]+(?:\s+[A-Z][\w.\-’]+){1,3})', multiLine: true)
+      final by = RegExp(r'^\s*(?:[Bb]y|[Aa]uthor:)\s+([A-Z][\w.\-’]+(?:[ \t]+[A-Z][\w.\-’]+){1,3})', multiLine: true)
           .firstMatch(text.length > 1500 ? text.substring(0, 1500) : text);
       if (by != null) record.setOne(Dc.creator, FieldValue(by.group(1)!, source: FieldSource.content, confidence: 0.6));
     }
@@ -288,7 +291,7 @@ class Cataloguer {
       final l = line.trim().replaceFirst(RegExp(r'^#{1,3}\s+'), '');
       if (l.isEmpty) continue;
       final words = l.split(RegExp(r'\s+')).length;
-      if (l.length >= 4 && l.length <= 120 && words <= 14 && !l.endsWith('.') &&
+      if (l.length >= 4 && l.length <= 120 && words <= 14 && !l.endsWith('.') && !l.contains('. ') &&
           RegExp(r'[A-Za-z\u00C0-\u024F]').hasMatch(l)) {
         return l;
       }

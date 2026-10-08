@@ -66,7 +66,7 @@ void main() {
   final rows = <List<String>>[]; // area, metric, measured, target, status
 
   void row(String area, String metric, String measured, String target, bool? met) =>
-      rows.add([area, metric, measured, target, met == null ? 'Not measured' : (met ? 'Met' : 'Not met')]);
+      rows.add([area, metric, measured, target, met == null ? (measured.startsWith('—') ? 'Not measured' : 'Info') : (met ? 'Met' : 'Not met')]);
 
   test('cataloguing accuracy', () {
     final cataloguer = Cataloguer();
@@ -323,7 +323,8 @@ void main() {
     md
       ..writeln()
       ..writeln('Limits: synthetic corpus written alongside the cataloguer (accuracy is optimistic); '
-          'the meaning-based ranker is a hashing stand-in for EmbeddingGemma; timings are from the CI machine, not a phone.');
+          'the meaning-based ranker is a hashing stand-in for EmbeddingGemma; timings are from the CI machine, not a phone. '
+          'Two cataloguing bugs found by the first run on this corpus were fixed, so it is not a held-out test set.');
     File('${dir.path}/report.md').writeAsStringSync(md.toString());
     // ignore: avoid_print
     print(md);

@@ -83,9 +83,11 @@ class _ReviewScreenState extends State<ReviewScreen> {
         final r = queue.first;
         _load(r);
         final total = widget.controller.drafts.length;
-        return ListView(
+        return Column(children: [
+          Expanded(
+            child: ListView(
           key: const Key('review-list'),
-          padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
+          padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
           children: [
             Row(children: [
               Expanded(
@@ -127,8 +129,17 @@ class _ReviewScreenState extends State<ReviewScreen> {
                   ),
               ]),
             ],
-            const SizedBox(height: 24),
-            Row(children: [
+          ],
+            ),
+          ),
+          // Fixed action bar: always reachable, even with the keyboard up.
+          Container(
+            padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              border: Border(top: BorderSide(color: IpesColors.line)),
+            ),
+            child: Row(children: [
               Expanded(
                 child: OutlinedButton(
                   onPressed: () => setState(() => _skipped.add(r.id)),
@@ -144,8 +155,8 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 ),
               ),
             ]),
-          ],
-        );
+          ),
+        ]);
       },
     );
   }

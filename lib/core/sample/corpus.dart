@@ -428,11 +428,11 @@ class SampleCorpus {
           const Gold(date: '2026-03-10', media: MediaType.audio),
         ),
         // ---------------------------------------------------------------- video
-        SampleItem('naming', 'VID_20240615_101500.mp4', Mp4Builder.build(),
+        SampleItem('naming', 'VID_20240615_101500.mp4', Mp4Builder.build(seed: 1),
             const Gold(date: '2024-06-15', media: MediaType.video)),
-        SampleItem('wedding', 'Ama and Kofi wedding (2023).mp4', Mp4Builder.build(),
+        SampleItem('wedding', 'Ama and Kofi wedding (2023).mp4', Mp4Builder.build(seed: 2),
             const Gold(title: 'Ama and Kofi Wedding', date: '2023', ddc: '392', media: MediaType.video)),
-        SampleItem('birthday', 'Grandma Akosua - 80th birthday (2022).mp4', Mp4Builder.build(),
+        SampleItem('birthday', 'Grandma Akosua - 80th birthday (2022).mp4', Mp4Builder.build(seed: 3),
             const Gold(title: 'Grandma Akosua 80th birthday', date: '2022', ddc: '392', media: MediaType.video)),
         // ---------------------------------------------------------------- photos
         SampleItem('xmas', 'IMG_20191225_143000.jpg', JpegBuilder.build(dateTimeOriginal: '2019:12:25 14:30:00'),

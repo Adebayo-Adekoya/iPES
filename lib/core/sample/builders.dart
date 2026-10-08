@@ -232,8 +232,11 @@ class JpegBuilder {
 }
 
 class Mp4Builder {
-  static Uint8List build() => Uint8List.fromList([
+  /// [seed] makes each sample file unique (identical bytes would be
+  /// treated as duplicates by the library).
+  static Uint8List build({int seed = 0}) => Uint8List.fromList([
         0, 0, 0, 24, ...ascii.encode('ftypisom'), 0, 0, 2, 0, ...ascii.encode('isomiso2'),
-        ...List<int>.generate(1024, (i) => (i * 13) & 0xFF),
+        ...List<int>.generate(1024, (i) => (i * 13 + seed * 7919) & 0xFF),
+        seed & 0xFF, (seed >> 8) & 0xFF,
       ]);
 }

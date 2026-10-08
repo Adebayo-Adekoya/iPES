@@ -103,7 +103,7 @@ void main() {
           expect(e.namespaceUri, DublinCore.dcNs);
           expect(Dc.all, contains(e.name.local));
         }
-        expect(dc.findElements('title', namespace: DublinCore.dcNs), isNotEmpty);
+        expect(dc.findElements('title', namespaceUri: DublinCore.dcNs), isNotEmpty);
       }
     });
 

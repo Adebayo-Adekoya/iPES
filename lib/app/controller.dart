@@ -1,8 +1,6 @@
 /// App state: wraps the pure-Dart [Library] for the widget tree.
 library;
 
-import 'dart:typed_data';
-
 import 'package:flutter/foundation.dart';
 
 import '../core/cataloguer.dart';
