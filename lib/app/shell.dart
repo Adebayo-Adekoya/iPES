@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 import '../core/record.dart';
 import 'controller.dart';
+import 'screens/device_check.dart';
 import 'screens/export_sheet.dart';
 import 'screens/library_screen.dart';
 import 'screens/record_view.dart';
@@ -73,6 +74,11 @@ class _AdaptiveShellState extends State<AdaptiveShell> {
     setState(() => tab = i);
   }
 
+  void _openDeviceCheck() {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const DeviceCheckPage()));
+  }
+
   void _open(CatalogueRecord r, WindowSize size) {
     if (size == WindowSize.expanded) {
       c.select(r.id);
@@ -134,6 +140,12 @@ class _AdaptiveShellState extends State<AdaptiveShell> {
             appBar: AppBar(
               title: Text(const ['iPES', 'Search', 'Review'][tab]),
               actions: [
+                IconButton(
+                  key: const Key('device-check'),
+                  tooltip: 'Device check',
+                  onPressed: _openDeviceCheck,
+                  icon: const Icon(Icons.speed),
+                ),
                 if (tab == 0)
                   IconButton(
                     tooltip: 'Export library',
@@ -182,6 +194,13 @@ class _AdaptiveShellState extends State<AdaptiveShell> {
                       child: const Icon(Icons.add),
                     ),
                     const SizedBox(height: 8),
+                    IconButton(
+                      key: const Key('device-check'),
+                      tooltip: 'Device check',
+                      color: Colors.white,
+                      onPressed: _openDeviceCheck,
+                      icon: const Icon(Icons.speed),
+                    ),
                     IconButton(
                       tooltip: 'Export library',
                       color: Colors.white,

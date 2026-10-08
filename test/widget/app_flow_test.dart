@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ipes/app/controller.dart';
+import 'package:ipes/app/screens/device_check.dart';
 import 'package:ipes/app/services.dart';
 import 'package:ipes/app/shell.dart';
 import 'package:ipes/core/cataloguer.dart';
@@ -137,5 +138,27 @@ void main() {
         find.descendant(of: find.byKey(const Key('marc-view')), matching: find.byType(SelectableText)));
     expect(marc.data, startsWith('LDR'));
     expect(marc.data, contains('245 '));
+  });
+
+  testWidgets('Device check runs every stage and offers results to copy', (tester) async {
+    tester.view.physicalSize = const Size(390, 844);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(MaterialApp(
+      home: DeviceCheckPage(runner: (stage, arg) async => stage(arg), searchItems: 300),
+    ));
+    await tester.tap(find.byKey(const Key('run-device-check')));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('20-page PDF'), findsOneWidget);
+    expect(find.textContaining('Smart search p95, 300 items'), findsOneWidget);
+    await tester.scrollUntilVisible(find.byKey(const Key('copy-results')), 200);
+    expect(find.byKey(const Key('copy-results')), findsOneWidget);
+  });
+
+  testWidgets('Device check opens from the phone app bar', (tester) async {
+    await pumpApp(tester, const Size(390, 844), seed: true);
+    await tester.tap(find.byKey(const Key('device-check')));
+    await tester.pumpAndSettle();
+    expect(find.byType(DeviceCheckPage), findsOneWidget);
   });
 }

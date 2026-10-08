@@ -9,6 +9,7 @@ import '../core/record.dart';
 import '../core/sample/corpus.dart';
 import '../core/search.dart';
 import 'services.dart';
+import 'startup.dart';
 
 class ImportReport {
   ImportReport(this.added, this.duplicates);
@@ -45,6 +46,7 @@ class LibraryController extends ChangeNotifier {
   Future<void> start({bool seedSamples = true}) async {
     await library.load();
     if (library.records.isEmpty && seedSamples) {
+      Startup.firstLaunch = true;
       final base = DateTime.now().subtract(const Duration(days: 40));
       final samples = SampleCorpus.curated();
       for (var i = 0; i < samples.length; i++) {
