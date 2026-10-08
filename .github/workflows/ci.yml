@@ -2,10 +2,11 @@ name: CI
 
 on:
   push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   test:
@@ -82,6 +83,18 @@ jobs:
           set -o pipefail
           flutter test test/eval --reporter expanded | tee build/eval/eval_log.txt
 
+      - name: Publish results to the ci-results branch
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p /tmp/out && cp -r build/eval/. /tmp/out/ 2>/dev/null || true
+          cd /tmp/out
+          echo "run ${{ github.run_id }} for ${{ github.sha }}" > RUN.txt
+          git init -q -b ci-results
+          git config user.name "iPES CI" && git config user.email "ci@users.noreply.github.com"
+          git add -A && git commit -qm "Test results for ${{ github.sha }}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" ci-results
+
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -124,6 +137,18 @@ jobs:
           flutter build web --release --no-web-resources-cdn || flutter build web --release
           sed -i 's|<base href="/">|<base href="./">|' build/web/index.html
           du -sh build/web
+
+      - name: Publish builds to the ci-build branch
+        shell: bash
+        run: |
+          mkdir -p /tmp/out && cp -r build/web /tmp/out/web
+          cp build/app/outputs/flutter-apk/app-release.apk /tmp/out/ipes.apk
+          cd /tmp/out
+          echo "run ${{ github.run_id }} for ${{ github.sha }}" > RUN.txt
+          git init -q -b ci-build
+          git config user.name "iPES CI" && git config user.email "ci@users.noreply.github.com"
+          git add -A && git commit -qm "Builds for ${{ github.sha }}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" ci-build
 
       - uses: actions/upload-artifact@v4
         with:
