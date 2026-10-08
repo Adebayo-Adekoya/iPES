@@ -62,8 +62,15 @@ class _AdaptiveShellState extends State<AdaptiveShell> {
       ..clearSnackBars()
       ..showSnackBar(SnackBar(
       content: Text(parts.join(' · ')),
-      action: report.added.isEmpty ? null : SnackBarAction(label: 'Review', onPressed: () => setState(() => tab = 2)),
+      action: report.added.isEmpty ? null : SnackBarAction(label: 'Review', onPressed: () => _go(2)),
     ));
+  }
+
+  /// Switches screens and clears messages from the previous one, so a
+  /// snackbar never covers the new screen's actions.
+  void _go(int i) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    setState(() => tab = i);
   }
 
   void _open(CatalogueRecord r, WindowSize size) {
@@ -88,7 +95,7 @@ class _AdaptiveShellState extends State<AdaptiveShell> {
           controller: c,
           selectedId: size == WindowSize.expanded ? c.selectedId : null,
           onOpen: (r) => _open(r, size),
-          onReview: () => setState(() => tab = 2),
+          onReview: () => _go(2),
         );
         if (size != WindowSize.expanded) return list;
         final selected = c.selected ?? (c.visibleRecords.isNotEmpty ? c.visibleRecords.first : null);
@@ -146,7 +153,7 @@ class _AdaptiveShellState extends State<AdaptiveShell> {
                 : null,
             bottomNavigationBar: NavigationBar(
               selectedIndex: tab,
-              onDestinationSelected: (i) => setState(() => tab = i),
+              onDestinationSelected: _go,
               destinations: [
                 const NavigationDestination(icon: Icon(Icons.local_library_outlined), label: 'Library'),
                 const NavigationDestination(icon: Icon(Icons.search), label: 'Search'),
@@ -162,7 +169,7 @@ class _AdaptiveShellState extends State<AdaptiveShell> {
             child: Row(children: [
               NavigationRail(
                 selectedIndex: tab,
-                onDestinationSelected: (i) => setState(() => tab = i),
+                onDestinationSelected: _go,
                 labelType: NavigationRailLabelType.all,
                 leading: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 12),
