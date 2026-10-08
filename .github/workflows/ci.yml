@@ -1,0 +1,136 @@
+name: CI
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Analyze, test and evaluate
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Flutter version
+        run: flutter --version
+
+      - name: Generate platform folders
+        # Platform scaffolding is generated, not committed; existing files are kept.
+        run: |
+          flutter create --org org.ipes --project-name ipes --platforms android,ios,web .
+          rm -f test/widget_test.dart
+
+      - run: flutter pub get
+
+      - name: Analyze
+        shell: bash
+        run: |
+          mkdir -p build/eval
+          set -o pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings | tee build/eval/analyze.txt
+
+      - name: Unit and widget tests (with coverage)
+        shell: bash
+        run: |
+          set -o pipefail
+          flutter test test/core test/widget --coverage --reporter expanded | tee build/eval/tests.txt
+
+      - name: Coverage of core library
+        if: always()
+        shell: bash
+        run: |
+          python3 - <<'EOF'
+          import os
+          path = 'coverage/lcov.info'
+          if not os.path.exists(path):
+              raise SystemExit(0)
+          files, cur, lf, lh = {}, None, 0, 0
+          for line in open(path):
+              line = line.strip()
+              if line.startswith('SF:'): cur = line[3:]
+              elif line.startswith('LF:'): lf = int(line[3:])
+              elif line.startswith('LH:'): lh = int(line[3:])
+              elif line == 'end_of_record': files[cur] = (lh, lf)
+          def total(pred):
+              h = sum(v[0] for k, v in files.items() if pred(k)); f = sum(v[1] for k, v in files.items() if pred(k))
+              return h, f
+          out = []
+          for name, pred in [('lib/core (excluding sample data)', lambda k: '/core/' in k and '/sample/' not in k),
+                             ('lib/app', lambda k: '/app/' in k), ('all of lib', lambda k: True)]:
+              h, f = total(pred)
+              out.append(f'{name}: {h}/{f} lines = {100*h/max(f,1):.1f}%')
+          for k, (h, f) in sorted(files.items()):
+              out.append(f'  {k}: {100*h/max(f,1):.1f}%')
+          text = '\n'.join(out)
+          print(text)
+          open('build/eval/coverage.txt', 'w').write(text + '\n')
+          EOF
+
+      - name: Evaluation against spec sections 11–12
+        if: always()
+        shell: bash
+        run: |
+          set -o pipefail
+          flutter test test/eval --reporter expanded | tee build/eval/eval_log.txt
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: evaluation
+          path: |
+            build/eval
+            coverage/lcov.info
+
+  build:
+    name: Build Android APK and web demo
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Generate platform folders
+        run: |
+          flutter create --org org.ipes --project-name ipes --platforms android,ios,web .
+          rm -f test/widget_test.dart
+
+      - run: flutter pub get
+
+      - name: Build APK (release, debug-signed for testing)
+        run: flutter build apk --release
+
+      - name: Build web demo (self-contained, relative paths)
+        shell: bash
+        run: |
+          flutter build web --release --no-web-resources-cdn || flutter build web --release
+          sed -i 's|<base href="/">|<base href="./">|' build/web/index.html
+          du -sh build/web
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ipes-android-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ipes-web
+          path: build/web
