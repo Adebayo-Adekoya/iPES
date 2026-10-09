@@ -43,6 +43,7 @@ class _SearchScreenState extends State<SearchScreen> {
     final result = _result;
     final best = result?.hits.where((h) => h.passage != null).firstOrNull;
     return ListView(
+      key: const Key('search-list'),
       padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
       children: [
         TextField(

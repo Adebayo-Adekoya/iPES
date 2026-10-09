@@ -19,6 +19,13 @@ void main() {
       addTearDown(tester.view.reset);
       addTearDown(tester.platformDispatcher.clearAllTestValues);
 
+      // Scrolls the list identified by [list] until [target] is built and on screen.
+      Future<void> reveal(Finder target, Key list) async {
+        final scrollable = find.descendant(of: find.byKey(list), matching: find.byType(Scrollable)).first;
+        await tester.scrollUntilVisible(target, 150, scrollable: scrollable);
+        await tester.pumpAndSettle();
+      }
+
       final c = LibraryController(library: Library(), files: FakeFileService());
       await c.start();
       await tester.pumpWidget(IpesApp(controller: c));
@@ -28,8 +35,11 @@ void main() {
       expect(find.byKey(const Key('library-list')), findsOneWidget);
 
       // Record view, both tabs.
-      await tester.tap(find.byKey(Key('library-item-${c.records.first.id}')));
+      final item = find.byKey(Key('library-item-${c.records.first.id}'));
+      await reveal(item, const Key('library-list'));
+      await tester.tap(item);
       await tester.pumpAndSettle();
+      await reveal(find.text('MARC 21'), Key('record-${c.records.first.id}'));
       await tester.tap(find.text('MARC 21'));
       await tester.pumpAndSettle();
       await tester.pageBack();
@@ -41,6 +51,7 @@ void main() {
       await tester.enterText(find.byKey(const Key('search-field')), 'what does my lease say about notice');
       await tester.testTextInput.receiveAction(TextInputAction.search);
       await tester.pumpAndSettle();
+      await reveal(find.byKey(const Key('best-passage')), const Key('search-list'));
       expect(find.byKey(const Key('best-passage')), findsOneWidget);
 
       // Review draft, skip it, then the empty state.
@@ -51,7 +62,7 @@ void main() {
         await tester.tap(find.text('Skip for now'));
         await tester.pumpAndSettle();
       }
-      expect(find.textContaining('skipped'), findsWidgets);
+      expect(find.textContaining('skipped', skipOffstage: false), findsWidgets);
 
       // Export sheet.
       await tester.tap(find.text('Library'));
@@ -70,6 +81,8 @@ void main() {
       await tester.pumpWidget(MaterialApp(
         home: DeviceCheckPage(runner: (stage, arg) async => stage(arg), searchItems: 200),
       ));
+      await tester.scrollUntilVisible(find.byKey(const Key('run-device-check')), 150);
+      await tester.pumpAndSettle();
       await tester.tap(find.byKey(const Key('run-device-check')));
       await tester.pumpAndSettle();
       await tester.scrollUntilVisible(find.byKey(const Key('copy-results')), 200);
