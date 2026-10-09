@@ -129,19 +129,30 @@ class _RecordViewState extends State<RecordView> {
     );
   }
 
+  /// One row per value: the field name and its source badge on one line
+  /// (wrapping when text is large), the value below. Never overflows.
   Widget _simple(CatalogueRecord r) => Card(
-        child: Column(children: [
+        clipBehavior: Clip.antiAlias,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           for (final e in Dc.all)
             for (final v in r.all(e))
-              ListTile(
-                dense: true,
-                title: Text(e == Dc.language ? languageName(v.value) : v.value,
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: IpesColors.ink)),
-                leading: SizedBox(
-                    width: 84,
-                    child: Text(Dc.label(e), style: const TextStyle(fontSize: 12, color: IpesColors.muted))),
-                trailing: SourceBadge(v),
-                tileColor: v.confidence < CatalogueRecord.reviewThreshold ? IpesColors.warn : null,
+              Container(
+                color: v.confidence < CatalogueRecord.reviewThreshold ? IpesColors.warn : null,
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 4,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Text(Dc.label(e), style: const TextStyle(fontSize: 12, color: IpesColors.muted)),
+                      SourceBadge(v),
+                    ],
+                  ),
+                  const SizedBox(height: 2),
+                  Text(e == Dc.language ? languageName(v.value) : v.value,
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: IpesColors.ink)),
+                ]),
               ),
         ]),
       );
