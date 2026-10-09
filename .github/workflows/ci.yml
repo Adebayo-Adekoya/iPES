@@ -171,7 +171,11 @@ jobs:
       - run: flutter pub get
 
       - name: Build APK (release, debug-signed for testing)
-        run: flutter build apk --release
+        # One APK per CPU type keeps each under GitHub's 100 MB file limit.
+        shell: bash
+        run: |
+          flutter build apk --release --split-per-abi
+          ls -la build/app/outputs/flutter-apk/
 
       - name: Build web demo (self-contained, relative paths)
         shell: bash
@@ -184,7 +188,9 @@ jobs:
         shell: bash
         run: |
           mkdir -p /tmp/out && cp -r build/web /tmp/out/web
-          cp build/app/outputs/flutter-apk/app-release.apk /tmp/out/ipes.apk
+          cp build/app/outputs/flutter-apk/app-arm64-v8a-release.apk /tmp/out/ipes.apk
+          cp build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk /tmp/out/ipes-armv7.apk
+          ls -la /tmp/out
           cd /tmp/out
           echo "run ${{ github.run_id }} for ${{ github.sha }}" > RUN.txt
           git init -q -b ci-build
@@ -195,7 +201,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: ipes-android-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: build/app/outputs/flutter-apk/*.apk
 
       - uses: actions/upload-artifact@v4
         with:
