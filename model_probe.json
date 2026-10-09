@@ -1,0 +1,725 @@
+{
+  "onnxruntime": "1.31.0",
+  "models": {
+    "e5-small": {
+      "repo": "Xenova/multilingual-e5-small",
+      "gated": false,
+      "files": [
+        {
+          "name": "config.json",
+          "mb": 0.0
+        },
+        {
+          "name": "onnx/model.onnx",
+          "mb": 470.3
+        },
+        {
+          "name": "onnx/model_bnb4.onnx",
+          "mb": 397.3
+        },
+        {
+          "name": "onnx/model_fp16.onnx",
+          "mb": 235.3
+        },
+        {
+          "name": "onnx/model_int8.onnx",
+          "mb": 118.1
+        },
+        {
+          "name": "onnx/model_q4.onnx",
+          "mb": 398.6
+        },
+        {
+          "name": "onnx/model_q4f16.onnx",
+          "mb": 204.8
+        },
+        {
+          "name": "onnx/model_quantized.onnx",
+          "mb": 118.3
+        },
+        {
+          "name": "onnx/model_uint8.onnx",
+          "mb": 118.1
+        },
+        {
+          "name": "quant_config.json",
+          "mb": 0.0
+        },
+        {
+          "name": "special_tokens_map.json",
+          "mb": 0.0
+        },
+        {
+          "name": "tokenizer.json",
+          "mb": 17.1
+        },
+        {
+          "name": "tokenizer_config.json",
+          "mb": 0.0
+        }
+      ],
+      "tokenizer": {
+        "normalizer": {
+          "type": "Sequence",
+          "normalizers": [
+            {
+              "type": "Precompiled",
+              "precompiled_charsmap": "<316720 chars>"
+            },
+            {
+              "type": "Replace",
+              "pattern": {
+                "Regex": " {2,}"
+              },
+              "content": " "
+            }
+          ]
+        },
+        "pre_tokenizer": {
+          "type": "Metaspace",
+          "replacement": "▁",
+          "add_prefix_space": true
+        },
+        "post_processor": {
+          "type": "TemplateProcessing",
+          "single": [
+            {
+              "SpecialToken": {
+                "id": "<s>",
+                "type_id": 0
+              }
+            },
+            {
+              "Sequence": {
+                "id": "A",
+                "type_id": 0
+              }
+            },
+            {
+              "SpecialToken": {
+                "id": "</s>",
+                "type_id": 0
+              }
+            }
+          ],
+          "pair": [
+            {
+              "SpecialToken": {
+                "id": "<s>",
+                "type_id": 0
+              }
+            },
+            {
+              "Sequence": {
+                "id": "A",
+                "type_id": 0
+              }
+            },
+            {
+              "SpecialToken": {
+                "id": "</s>",
+                "type_id": 0
+              }
+            },
+            {
+              "SpecialToken": {
+                "id": "</s>",
+                "type_id": 0
+              }
+            },
+            {
+              "Sequence": {
+                "id": "B",
+                "type_id": 0
+              }
+            },
+            {
+              "SpecialToken": {
+                "id": "</s>",
+                "type_id": 0
+              }
+            }
+          ],
+          "special_tokens": {
+            "</s>": {
+              "id": "</s>",
+              "ids": [
+                2
+              ],
+              "tokens": [
+                "</s>"
+              ]
+            },
+            "<s>": {
+              "id": "<s>",
+              "ids": [
+                0
+              ],
+              "tokens": [
+                "<s>"
+              ]
+            }
+          }
+        },
+        "decoder": {
+          "type": "Metaspace",
+          "replacement": "▁",
+          "add_prefix_space": true
+        },
+        "truncation": null,
+        "padding": null,
+        "model": {
+          "type": "Unigram",
+          "unk_id": 3
+        },
+        "vocab_size": 250002,
+        "vocab_sample": [
+          [
+            "<s>",
+            0.0
+          ],
+          [
+            "<pad>",
+            0.0
+          ],
+          [
+            "</s>",
+            0.0
+          ],
+          [
+            "<unk>",
+            0.0
+          ],
+          [
+            ",",
+            -3.4635426998138428
+          ]
+        ],
+        "merges_count": null,
+        "merges_sample": null,
+        "added_tokens": [
+          {
+            "id": 0,
+            "content": "<s>",
+            "single_word": false,
+            "lstrip": false,
+            "rstrip": false,
+            "normalized": false,
+            "special": true
+          },
+          {
+            "id": 1,
+            "content": "<pad>",
+            "single_word": false,
+            "lstrip": false,
+            "rstrip": false,
+            "normalized": false,
+            "special": true
+          },
+          {
+            "id": 2,
+            "content": "</s>",
+            "single_word": false,
+            "lstrip": false,
+            "rstrip": false,
+            "normalized": false,
+            "special": true
+          },
+          {
+            "id": 3,
+            "content": "<unk>",
+            "single_word": false,
+            "lstrip": false,
+            "rstrip": false,
+            "normalized": false,
+            "special": true
+          },
+          {
+            "id": 250001,
+            "content": "<mask>",
+            "single_word": false,
+            "lstrip": false,
+            "rstrip": false,
+            "normalized": false,
+            "special": true
+          }
+        ],
+        "added_tokens_count": 5
+      },
+      "tokenizer_class": "XLMRobertaTokenizer",
+      "special": {
+        "bos": "<s>",
+        "eos": "</s>",
+        "pad": "<pad>",
+        "unk": "<unk>",
+        "pad_id": 1
+      },
+      "fixture_count": 105,
+      "download_s": 3.3,
+      "onnx_mb": 118.3,
+      "inputs": [
+        {
+          "name": "input_ids",
+          "type": "tensor(int64)",
+          "shape": [
+            "batch_size",
+            "sequence_length"
+          ]
+        },
+        {
+          "name": "attention_mask",
+          "type": "tensor(int64)",
+          "shape": [
+            "batch_size",
+            "sequence_length"
+          ]
+        },
+        {
+          "name": "token_type_ids",
+          "type": "tensor(int64)",
+          "shape": [
+            "batch_size",
+            "sequence_length"
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "last_hidden_state",
+          "type": "tensor(float)",
+          "shape": [
+            "batch_size",
+            "sequence_length",
+            "384"
+          ]
+        }
+      ],
+      "onnx_ms_per_text_ci": 3.0,
+      "onnx_vs_sentence_transformers_cosine": [
+        0.9964,
+        0.9957,
+        0.9951,
+        0.9957,
+        0.9968,
+        0.9982
+      ]
+    },
+    "embeddinggemma": {
+      "repo": "onnx-community/embeddinggemma-300m-ONNX",
+      "gated": false,
+      "files": [
+        {
+          "name": "config.json",
+          "mb": 0.0
+        },
+        {
+          "name": "generation_config.json",
+          "mb": 0.0
+        },
+        {
+          "name": "onnx/model.onnx",
+          "mb": 0.5
+        },
+        {
+          "name": "onnx/model.onnx_data",
+          "mb": 1234.5
+        },
+        {
+          "name": "onnx/model_fp16.onnx",
+          "mb": 0.7
+        },
+        {
+          "name": "onnx/model_fp16.onnx_data",
+          "mb": 617.4
+        },
+        {
+          "name": "onnx/model_no_gather_q4.onnx",
+          "mb": 0.5
+        },
+        {
+          "name": "onnx/model_no_gather_q4.onnx_data",
+          "mb": 194.6
+        },
+        {
+          "name": "onnx/model_q4.onnx",
+          "mb": 0.5
+        },
+        {
+          "name": "onnx/model_q4.onnx_data",
+          "mb": 196.7
+        },
+        {
+          "name": "onnx/model_q4f16.onnx",
+          "mb": 0.7
+        },
+        {
+          "name": "onnx/model_q4f16.onnx_data",
+          "mb": 175.4
+        },
+        {
+          "name": "onnx/model_quantized.onnx",
+          "mb": 0.6
+        },
+        {
+          "name": "onnx/model_quantized.onnx_data",
+          "mb": 308.9
+        },
+        {
+          "name": "special_tokens_map.json",
+          "mb": 0.0
+        },
+        {
+          "name": "tokenizer.json",
+          "mb": 20.3
+        },
+        {
+          "name": "tokenizer_config.json",
+          "mb": 1.2
+        }
+      ],
+      "tokenizer": {
+        "normalizer": {
+          "type": "Replace",
+          "pattern": {
+            "String": " "
+          },
+          "content": "▁"
+        },
+        "pre_tokenizer": {
+          "type": "Split",
+          "pattern": {
+            "String": " "
+          },
+          "behavior": "MergedWithPrevious",
+          "invert": false
+        },
+        "post_processor": {
+          "type": "TemplateProcessing",
+          "single": [
+            {
+              "SpecialToken": {
+                "id": "<bos>",
+                "type_id": 0
+              }
+            },
+            {
+              "Sequence": {
+                "id": "A",
+                "type_id": 0
+              }
+            },
+            {
+              "SpecialToken": {
+                "id": "<eos>",
+                "type_id": 0
+              }
+            }
+          ],
+          "pair": [
+            {
+              "SpecialToken": {
+                "id": "<bos>",
+                "type_id": 0
+              }
+            },
+            {
+              "Sequence": {
+                "id": "A",
+                "type_id": 0
+              }
+            },
+            {
+              "SpecialToken": {
+                "id": "<eos>",
+                "type_id": 0
+              }
+            },
+            {
+              "SpecialToken": {
+                "id": "<bos>",
+                "type_id": 1
+              }
+            },
+            {
+              "Sequence": {
+                "id": "B",
+                "type_id": 1
+              }
+            },
+            {
+              "SpecialToken": {
+                "id": "<eos>",
+                "type_id": 1
+              }
+            }
+          ],
+          "special_tokens": {
+            "<bos>": {
+              "id": "<bos>",
+              "ids": [
+                2
+              ],
+              "tokens": [
+                "<bos>"
+              ]
+            },
+            "<eos>": {
+              "id": "<eos>",
+              "ids": [
+                1
+              ],
+              "tokens": [
+                "<eos>"
+              ]
+            }
+          }
+        },
+        "decoder": {
+          "type": "Sequence",
+          "decoders": [
+            {
+              "type": "Replace",
+              "pattern": {
+                "String": "▁"
+              },
+              "content": " "
+            },
+            {
+              "type": "ByteFallback"
+            },
+            {
+              "type": "Fuse"
+            }
+          ]
+        },
+        "truncation": null,
+        "padding": null,
+        "model": {
+          "type": "BPE",
+          "dropout": null,
+          "unk_token": "<unk>",
+          "continuing_subword_prefix": null,
+          "end_of_word_suffix": null,
+          "fuse_unk": true,
+          "byte_fallback": true,
+          "ignore_merges": false
+        },
+        "vocab_size": 262144,
+        "vocab_sample": [
+          [
+            "<pad>",
+            0
+          ],
+          [
+            "<eos>",
+            1
+          ],
+          [
+            "<bos>",
+            2
+          ],
+          [
+            "<unk>",
+            3
+          ],
+          [
+            "<mask>",
+            4
+          ]
+        ],
+        "merges_count": 514906,
+        "merges_sample": [
+          [
+            "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+            "\n"
+          ],
+          [
+            "▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁",
+            "▁"
+          ],
+          [
+            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+            "\t"
+          ],
+          [
+            "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+            "\n\n"
+          ],
+          [
+            "▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁",
+            "▁▁"
+          ]
+        ],
+        "added_tokens": [
+          {
+            "id": 0,
+            "content": "<pad>",
+            "single_word": false,
+            "lstrip": false,
+            "rstrip": false,
+            "normalized": false,
+            "special": true
+          },
+          {
+            "id": 1,
+            "content": "<eos>",
+            "single_word": false,
+            "lstrip": false,
+            "rstrip": false,
+            "normalized": false,
+            "special": true
+          },
+          {
+            "id": 2,
+            "content": "<bos>",
+            "single_word": false,
+            "lstrip": false,
+            "rstrip": false,
+            "normalized": false,
+            "special": true
+          },
+          {
+            "id": 3,
+            "content": "<unk>",
+            "single_word": false,
+            "lstrip": false,
+            "rstrip": false,
+            "normalized": false,
+            "special": true
+          },
+          {
+            "id": 4,
+            "content": "<mask>",
+            "single_word": false,
+            "lstrip": false,
+            "rstrip": false,
+            "normalized": false,
+            "special": false
+          },
+          {
+            "id": 5,
+            "content": "[multimodal]",
+            "single_word": false,
+            "lstrip": false,
+            "rstrip": false,
+            "normalized": false,
+            "special": false
+          },
+          {
+            "id": 6,
+            "content": "<unused0>",
+            "single_word": false,
+            "lstrip": false,
+            "rstrip": false,
+            "normalized": false,
+            "special": false
+          },
+          {
+            "id": 7,
+            "content": "<unused1>",
+            "single_word": false,
+            "lstrip": false,
+            "rstrip": false,
+            "normalized": false,
+            "special": false
+          },
+          {
+            "id": 8,
+            "content": "<unused2>",
+            "single_word": false,
+            "lstrip": false,
+            "rstrip": false,
+            "normalized": false,
+            "special": false
+          },
+          {
+            "id": 9,
+            "content": "<unused3>",
+            "single_word": false,
+            "lstrip": false,
+            "rstrip": false,
+            "normalized": false,
+            "special": false
+          },
+          {
+            "id": 10,
+            "content": "<unused4>",
+            "single_word": false,
+            "lstrip": false,
+            "rstrip": false,
+            "normalized": false,
+            "special": false
+          },
+          {
+            "id": 11,
+            "content": "<unused5>",
+            "single_word": false,
+            "lstrip": false,
+            "rstrip": false,
+            "normalized": false,
+            "special": false
+          }
+        ],
+        "added_tokens_count": 6415
+      },
+      "tokenizer_class": "GemmaTokenizer",
+      "special": {
+        "bos": "<bos>",
+        "eos": "<eos>",
+        "pad": "<pad>",
+        "unk": "<unk>",
+        "pad_id": 0
+      },
+      "fixture_count": 105,
+      "onnx_data_mb": 308.9,
+      "download_s": 4.4,
+      "onnx_mb": 0.6,
+      "inputs": [
+        {
+          "name": "input_ids",
+          "type": "tensor(int64)",
+          "shape": [
+            "batch_size",
+            "total_sequence_length"
+          ]
+        },
+        {
+          "name": "attention_mask",
+          "type": "tensor(int64)",
+          "shape": [
+            "batch_size",
+            "total_sequence_length"
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "last_hidden_state",
+          "type": "tensor(float)",
+          "shape": [
+            "batch_size",
+            "total_sequence_length",
+            "768"
+          ]
+        },
+        {
+          "name": "sentence_embedding",
+          "type": "tensor(float)",
+          "shape": [
+            "batch_size",
+            "768"
+          ]
+        }
+      ],
+      "onnx_ms_per_text_ci": 98.4,
+      "onnx_vs_sentence_transformers_cosine": [
+        0.9951,
+        0.9955,
+        0.995,
+        0.9961,
+        0.9951,
+        0.9959
+      ]
+    }
+  }
+}

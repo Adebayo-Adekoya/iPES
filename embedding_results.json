@@ -1,0 +1,6005 @@
+{
+  "queries": 38,
+  "docs": 38,
+  "baselines": {
+    "Keyword only (BM25)": {
+      "ndcg10": 0.8442434554691506,
+      "ndcg10_meaning": 0.5960188151821482,
+      "ndcg10_keyword_queries": 0.9588086740631516,
+      "top3": 0.8947368421052632
+    },
+    "Current hybrid (hashing stand-in)": {
+      "ndcg10": 0.9040305718515317,
+      "ndcg10_meaning": 0.7543159221263988,
+      "ndcg10_keyword_queries": 0.973129640955439,
+      "top3": 0.9736842105263158,
+      "lift_over_keyword": 0.07081738803548922
+    }
+  },
+  "models": {
+    "EmbeddingGemma 300M (768)": {
+      "hf_id": "google/embeddinggemma-300m",
+      "licence": "Gemma Terms of Use",
+      "dimensions": 768,
+      "max_tokens": 2048,
+      "parameters_millions": 308,
+      "semantic": {
+        "ndcg10": 0.9880965212841638,
+        "ndcg10_meaning": 0.9933100657623489,
+        "ndcg10_keyword_queries": 0.9856902699865399,
+        "top3": 1.0
+      },
+      "hybrid": {
+        "ndcg10": 0.9627761211495005,
+        "ndcg10_meaning": 0.9047274745025854,
+        "ndcg10_keyword_queries": 0.9895678042173073,
+        "top3": 1.0
+      },
+      "fusions": {
+        "equal": {
+          "ndcg10": 0.9627761211495005,
+          "ndcg10_meaning": 0.9047274745025854,
+          "ndcg10_keyword_queries": 0.9895678042173073,
+          "top3": 1.0
+        },
+        "semantic x2": {
+          "ndcg10": 0.9688865103533225,
+          "ndcg10_meaning": 0.9354833283716307,
+          "ndcg10_keyword_queries": 0.9843033635756419,
+          "top3": 1.0
+        },
+        "semantic x3": {
+          "ndcg10": 0.9667738995414327,
+          "ndcg10_meaning": 0.9287933941339795,
+          "ndcg10_keyword_queries": 0.9843033635756419,
+          "top3": 1.0
+        }
+      },
+      "ci_cpu_doc_embed_ms": 202.9,
+      "ci_cpu_query_embed_ms": 25.5,
+      "lift_over_keyword": 0.1404010477220468
+    },
+    "EmbeddingGemma 300M (256)": {
+      "hf_id": "google/embeddinggemma-300m",
+      "licence": "Gemma Terms of Use",
+      "dimensions": 256,
+      "max_tokens": 2048,
+      "parameters_millions": 308,
+      "semantic": {
+        "ndcg10": 0.9631880989399866,
+        "ndcg10_meaning": 0.9151105917327532,
+        "ndcg10_keyword_queries": 0.9853777176510173,
+        "top3": 0.9736842105263158
+      },
+      "hybrid": {
+        "ndcg10": 0.9589602838493191,
+        "ndcg10_meaning": 0.9047274745025854,
+        "ndcg10_keyword_queries": 0.9839908112401192,
+        "top3": 1.0
+      },
+      "fusions": {
+        "equal": {
+          "ndcg10": 0.9589602838493191,
+          "ndcg10_meaning": 0.9047274745025854,
+          "ndcg10_keyword_queries": 0.9839908112401192,
+          "top3": 1.0
+        },
+        "semantic x2": {
+          "ndcg10": 0.9686726587553334,
+          "ndcg10_meaning": 0.9354833283716307,
+          "ndcg10_keyword_queries": 0.9839908112401192,
+          "top3": 1.0
+        },
+        "semantic x3": {
+          "ndcg10": 0.9665600479434435,
+          "ndcg10_meaning": 0.9287933941339795,
+          "ndcg10_keyword_queries": 0.9839908112401192,
+          "top3": 1.0
+        }
+      },
+      "ci_cpu_doc_embed_ms": 200.2,
+      "ci_cpu_query_embed_ms": 25.4,
+      "lift_over_keyword": 0.13588121724487606
+    },
+    "multilingual-E5-small (384)": {
+      "hf_id": "intfloat/multilingual-e5-small",
+      "licence": "MIT",
+      "dimensions": 384,
+      "max_tokens": 512,
+      "parameters_millions": 118,
+      "semantic": {
+        "ndcg10": 0.9391232447749045,
+        "ndcg10_meaning": 0.9122975420564821,
+        "ndcg10_keyword_queries": 0.9515043383372532,
+        "top3": 0.9473684210526315
+      },
+      "hybrid": {
+        "ndcg10": 0.9707141705010557,
+        "ndcg10_meaning": 0.9287933941339795,
+        "ndcg10_keyword_queries": 0.990062221132014,
+        "top3": 1.0
+      },
+      "fusions": {
+        "equal": {
+          "ndcg10": 0.9707141705010557,
+          "ndcg10_meaning": 0.9287933941339795,
+          "ndcg10_keyword_queries": 0.990062221132014,
+          "top3": 1.0
+        },
+        "semantic x2": {
+          "ndcg10": 0.9696993147287629,
+          "ndcg10_meaning": 0.9287933941339795,
+          "ndcg10_keyword_queries": 0.9885789703878937,
+          "top3": 1.0
+        },
+        "semantic x3": {
+          "ndcg10": 0.9696993147287629,
+          "ndcg10_meaning": 0.9287933941339795,
+          "ndcg10_keyword_queries": 0.9885789703878937,
+          "top3": 1.0
+        }
+      },
+      "ci_cpu_doc_embed_ms": 46.2,
+      "ci_cpu_query_embed_ms": 4.4,
+      "lift_over_keyword": 0.14980360725642183
+    }
+  },
+  "perQuery": [
+    {
+      "query": "what does my lease say about notice",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "warranty"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "warranty"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "warranty"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "warranty"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "warranty"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "warranty",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "warranty",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "warranty",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "warranty",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "warranty",
+          "deed"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "payslip"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "payslip"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "payslip"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "payslip"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "payslip"
+        ]
+      }
+    },
+    {
+      "query": "tenancy agreement",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "lease"
+        ]
+      },
+      "current": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "schoolreport",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "tax"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "insurance"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "insurance"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "insurance"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "insurance"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "insurance"
+        ]
+      }
+    },
+    {
+      "query": "rent deposit",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "bank"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "bank"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "bank"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "bank"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "bank"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "bank"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "bank"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "ecg"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "bank"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "bank"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "bank"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "bank"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "bank"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "bank"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "bank"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "bank"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "bank"
+        ]
+      }
+    },
+    {
+      "query": "electricity receipt",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "bank"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "payslip",
+          "warranty"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "lease"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "tax"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "tax"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "tax"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "tax"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "tax"
+        ]
+      }
+    },
+    {
+      "query": "jollof",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "cookbook"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "groundnut",
+          "cookbook"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "groundnut",
+          "cookbook"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "groundnut",
+          "cookbook"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "groundnut",
+          "cookbook"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "groundnut",
+          "cookbook"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "cookbook",
+          "groundnut"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "cookbook",
+          "groundnut"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "cookbook",
+          "groundnut"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "cookbook",
+          "groundnut"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "cookbook",
+          "groundnut"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "paper",
+          "voicenote"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "paper",
+          "voicenote"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "paper",
+          "voicenote"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "paper",
+          "voicenote"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "paper",
+          "voicenote"
+        ]
+      }
+    },
+    {
+      "query": "recipes",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 0.7653606369886218,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "jollof",
+          "groundnut"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      }
+    },
+    {
+      "query": "data structures lecture",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 0.9514426589871553,
+        "top3": 1.0,
+        "top": [
+          "lectureaudio",
+          "dsbook",
+          "lecturenotes"
+        ]
+      },
+      "current": {
+        "ndcg": 0.9514426589871553,
+        "top3": 1.0,
+        "top": [
+          "lectureaudio",
+          "dsbook",
+          "lecturenotes"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 0.8145672023038535,
+        "top3": 1.0,
+        "top": [
+          "dsbook",
+          "lectureaudio",
+          "lecturenotes"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 0.9514426589871553,
+        "top3": 1.0,
+        "top": [
+          "lectureaudio",
+          "dsbook",
+          "lecturenotes"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 0.8145672023038535,
+        "top3": 1.0,
+        "top": [
+          "dsbook",
+          "lectureaudio",
+          "lecturenotes"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 0.8145672023038535,
+        "top3": 1.0,
+        "top": [
+          "dsbook",
+          "lectureaudio",
+          "lecturenotes"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 0.9514426589871553,
+        "top3": 1.0,
+        "top": [
+          "lectureaudio",
+          "dsbook",
+          "lecturenotes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 0.8145672023038535,
+        "top3": 1.0,
+        "top": [
+          "dsbook",
+          "lecturenotes",
+          "lectureaudio"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 0.8145672023038535,
+        "top3": 1.0,
+        "top": [
+          "dsbook",
+          "lectureaudio",
+          "lecturenotes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 0.8145672023038535,
+        "top3": 1.0,
+        "top": [
+          "dsbook",
+          "lectureaudio",
+          "lecturenotes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 0.8145672023038535,
+        "top3": 1.0,
+        "top": [
+          "dsbook",
+          "lecturenotes",
+          "lectureaudio"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 0.8145672023038535,
+        "top3": 1.0,
+        "top": [
+          "dsbook",
+          "lectureaudio",
+          "lecturenotes"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 0.9128781396400242,
+        "top3": 1.0,
+        "top": [
+          "lectureaudio",
+          "dsbook",
+          "algonotes"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 0.9514426589871553,
+        "top3": 1.0,
+        "top": [
+          "lectureaudio",
+          "dsbook",
+          "lecturenotes"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 0.9128781396400242,
+        "top3": 1.0,
+        "top": [
+          "lectureaudio",
+          "dsbook",
+          "algonotes"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 0.9128781396400242,
+        "top3": 1.0,
+        "top": [
+          "lectureaudio",
+          "dsbook",
+          "algonotes"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 0.9514426589871553,
+        "top3": 1.0,
+        "top": [
+          "lectureaudio",
+          "dsbook",
+          "lecturenotes"
+        ]
+      }
+    },
+    {
+      "query": "hash tables",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 0.9072836011519267,
+        "top3": 1.0,
+        "top": [
+          "lecturenotes",
+          "dsbook"
+        ]
+      },
+      "current": {
+        "ndcg": 0.9072836011519267,
+        "top3": 1.0,
+        "top": [
+          "lecturenotes",
+          "dsbook",
+          "warranty"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 0.9871451602176229,
+        "top3": 1.0,
+        "top": [
+          "lecturenotes",
+          "dsbook",
+          "algonotes"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 0.9871451602176229,
+        "top3": 1.0,
+        "top": [
+          "lecturenotes",
+          "dsbook",
+          "algonotes"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 0.9871451602176229,
+        "top3": 1.0,
+        "top": [
+          "lecturenotes",
+          "dsbook",
+          "algonotes"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 0.9871451602176229,
+        "top3": 1.0,
+        "top": [
+          "lecturenotes",
+          "dsbook",
+          "algonotes"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 0.9871451602176229,
+        "top3": 1.0,
+        "top": [
+          "lecturenotes",
+          "dsbook",
+          "algonotes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 0.9790187994940358,
+        "top3": 1.0,
+        "top": [
+          "lecturenotes",
+          "dsbook",
+          "algonotes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 0.9790187994940358,
+        "top3": 1.0,
+        "top": [
+          "lecturenotes",
+          "dsbook",
+          "algonotes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 0.9790187994940358,
+        "top3": 1.0,
+        "top": [
+          "lecturenotes",
+          "dsbook",
+          "algonotes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 0.9790187994940358,
+        "top3": 1.0,
+        "top": [
+          "lecturenotes",
+          "dsbook",
+          "algonotes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 0.9790187994940358,
+        "top3": 1.0,
+        "top": [
+          "lecturenotes",
+          "dsbook",
+          "algonotes"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "dsbook",
+          "lecturenotes",
+          "lectureaudio"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lecturenotes",
+          "dsbook",
+          "lectureaudio"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "dsbook",
+          "lecturenotes",
+          "lectureaudio"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "dsbook",
+          "lecturenotes",
+          "lectureaudio"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lecturenotes",
+          "dsbook",
+          "lectureaudio"
+        ]
+      }
+    },
+    {
+      "query": "videos from 2024",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "naming"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "naming"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "naming"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "naming"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "naming"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "naming"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "naming"
+        ]
+      }
+    },
+    {
+      "query": "wedding video",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding",
+          "birthday",
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding",
+          "birthday",
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding",
+          "birthday",
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding",
+          "birthday",
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding",
+          "birthday",
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding",
+          "birthday",
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding",
+          "birthday",
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding",
+          "birthday",
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding",
+          "birthday",
+          "naming"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding",
+          "birthday",
+          "naming"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding",
+          "birthday",
+          "naming"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding",
+          "birthday",
+          "naming"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding",
+          "birthday",
+          "naming"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding",
+          "birthday",
+          "naming"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding",
+          "birthday",
+          "naming"
+        ]
+      }
+    },
+    {
+      "query": "photos of grandma",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "grandma"
+        ]
+      },
+      "current": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "grandma"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "grandma",
+          "xmas",
+          "beach"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "grandma",
+          "xmas",
+          "beach"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "grandma",
+          "xmas",
+          "beach"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "grandma",
+          "xmas",
+          "beach"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "grandma",
+          "xmas",
+          "beach"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "grandma",
+          "xmas",
+          "beach"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "grandma",
+          "xmas",
+          "beach"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "grandma",
+          "xmas",
+          "beach"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "grandma",
+          "xmas",
+          "beach"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "grandma",
+          "xmas",
+          "beach"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "grandma",
+          "xmas",
+          "beach"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "grandma",
+          "xmas",
+          "beach"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "grandma",
+          "xmas",
+          "beach"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "grandma",
+          "xmas",
+          "beach"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "grandma",
+          "xmas",
+          "beach"
+        ]
+      }
+    },
+    {
+      "query": "austen",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "pride"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "cookbook"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "frankenstein",
+          "souls"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "frankenstein",
+          "souls"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "frankenstein",
+          "souls"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "frankenstein",
+          "souls"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "frankenstein",
+          "souls"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "frankenstein",
+          "souls"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "frankenstein",
+          "souls"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "frankenstein",
+          "souls"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "frankenstein",
+          "souls"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "frankenstein",
+          "souls"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "xmas",
+          "lectureaudio"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "xmas",
+          "lectureaudio"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "xmas",
+          "lectureaudio"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "xmas",
+          "lectureaudio"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "xmas",
+          "lectureaudio"
+        ]
+      }
+    },
+    {
+      "query": "folk tales",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "souls"
+        ]
+      },
+      "current": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "souls"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "contes",
+          "souls"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "souls",
+          "contes"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "souls",
+          "contes"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "souls",
+          "contes"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "souls",
+          "contes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "contes",
+          "frankenstein"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "souls",
+          "contes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "souls",
+          "contes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "souls",
+          "contes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "souls",
+          "contes"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "contes",
+          "souls"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "souls",
+          "contes"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "souls",
+          "contes"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "souls",
+          "contes"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "souls",
+          "contes"
+        ]
+      }
+    },
+    {
+      "query": "cocoa",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "thesis"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "thesis",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "thesis",
+          "podcast",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "thesis",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "thesis",
+          "podcast",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "thesis",
+          "podcast",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "thesis",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "thesis",
+          "podcast",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "thesis",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "thesis",
+          "podcast",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "thesis",
+          "podcast",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "thesis",
+          "folktales"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "thesis",
+          "birthday"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "thesis",
+          "birthday"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "thesis",
+          "birthday"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "thesis",
+          "birthday"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "thesis",
+          "birthday"
+        ]
+      }
+    },
+    {
+      "query": "full blood count",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "lecturenotes",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "lecturenotes",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "lecturenotes",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "lecturenotes",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "lecturenotes",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "tax",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "tax",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "tax",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "tax",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "tax",
+          "lease"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "paper",
+          "souls"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "paper",
+          "souls"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "paper",
+          "souls"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "paper",
+          "souls"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "paper",
+          "souls"
+        ]
+      }
+    },
+    {
+      "query": "insurance policy",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "warranty",
+          "souls"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "lease",
+          "warranty"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "lease",
+          "warranty"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "lease",
+          "warranty"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "lease",
+          "warranty"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "lease",
+          "warranty"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "warranty",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "warranty",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "warranty",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "warranty",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "warranty",
+          "lease"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "paper",
+          "lectureaudio"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "paper",
+          "lectureaudio"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "paper",
+          "lectureaudio"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "paper",
+          "lectureaudio"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "paper",
+          "lectureaudio"
+        ]
+      }
+    },
+    {
+      "query": "tax return",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "tax",
+          "payslip",
+          "lease"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "tax",
+          "payslip",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "tax",
+          "payslip",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "tax",
+          "payslip",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "tax",
+          "payslip",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "tax",
+          "payslip",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "tax",
+          "payslip",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "tax",
+          "deed",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "tax",
+          "payslip",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "tax",
+          "payslip",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "tax",
+          "payslip",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "tax",
+          "payslip",
+          "lease"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "tax",
+          "payslip",
+          "xmas"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "tax",
+          "payslip",
+          "lease"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "tax",
+          "payslip",
+          "lease"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "tax",
+          "payslip",
+          "lease"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "tax",
+          "payslip",
+          "lease"
+        ]
+      }
+    },
+    {
+      "query": "bank statement march",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "bank",
+          "lease"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "bank",
+          "lease",
+          "ecg"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "bank",
+          "payslip",
+          "ecg"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "bank",
+          "lease",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "bank",
+          "lease",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "bank",
+          "lease",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "bank",
+          "lease",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "bank",
+          "payslip",
+          "paper"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "bank",
+          "lease",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "bank",
+          "lease",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "bank",
+          "lease",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "bank",
+          "lease",
+          "payslip"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "bank",
+          "voicenote",
+          "tax"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "bank",
+          "lease",
+          "voicenote"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "bank",
+          "lease",
+          "voicenote"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "bank",
+          "lease",
+          "voicenote"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "bank",
+          "lease",
+          "voicenote"
+        ]
+      }
+    },
+    {
+      "query": "end of term report",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "schoolreport",
+          "labreport",
+          "lease"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "schoolreport",
+          "lease",
+          "labreport"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "schoolreport",
+          "reunion",
+          "labreport"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "schoolreport",
+          "labreport",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "schoolreport",
+          "labreport",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "schoolreport",
+          "labreport",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "schoolreport",
+          "labreport",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "schoolreport",
+          "reunion",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "schoolreport",
+          "lease",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "schoolreport",
+          "deed",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "schoolreport",
+          "deed",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "schoolreport",
+          "lease",
+          "deed"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "schoolreport",
+          "lease",
+          "tax"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "schoolreport",
+          "lease",
+          "labreport"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "schoolreport",
+          "lease",
+          "labreport"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "schoolreport",
+          "lease",
+          "deed"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "schoolreport",
+          "lease",
+          "labreport"
+        ]
+      }
+    },
+    {
+      "query": "highlife",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "lecturenotes",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "lecturenotes",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "lecturenotes",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "lecturenotes",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "lecturenotes",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "frankenstein",
+          "lecturenotes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "frankenstein",
+          "lecturenotes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "frankenstein",
+          "lecturenotes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "frankenstein",
+          "lecturenotes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "frankenstein",
+          "lecturenotes"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "xmas",
+          "cv"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "xmas",
+          "cv"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "xmas",
+          "cv"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "xmas",
+          "cv"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "xmas",
+          "cv"
+        ]
+      }
+    },
+    {
+      "query": "metadata personal archives",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "tax"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "lecturenotes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "tax"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "beach"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "tax"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "tax"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "tax"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "tax"
+        ]
+      }
+    },
+    {
+      "query": "slave narrative",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "equiano"
+        ]
+      },
+      "current": {
+        "ndcg": 0.8262346571285599,
+        "top3": 1.0,
+        "top": [
+          "equiano",
+          "insurance",
+          "warranty"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "equiano",
+          "souls",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "equiano",
+          "souls",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "equiano",
+          "souls",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "equiano",
+          "souls",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "equiano",
+          "souls",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "equiano",
+          "souls",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "equiano",
+          "souls",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "equiano",
+          "souls",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "equiano",
+          "souls",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "equiano",
+          "souls",
+          "folktales"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "equiano",
+          "souls",
+          "contes"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "equiano",
+          "souls",
+          "contes"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "equiano",
+          "souls",
+          "contes"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "equiano",
+          "souls",
+          "contes"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "equiano",
+          "souls",
+          "contes"
+        ]
+      }
+    },
+    {
+      "query": "frankenstein",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "frankenstein"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "frankenstein"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "frankenstein",
+          "folktales",
+          "pride"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "frankenstein",
+          "folktales",
+          "pride"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "frankenstein",
+          "folktales",
+          "pride"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "frankenstein",
+          "folktales",
+          "pride"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "frankenstein",
+          "folktales",
+          "pride"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "frankenstein",
+          "pride",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "frankenstein",
+          "pride",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "frankenstein",
+          "pride",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "frankenstein",
+          "pride",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "frankenstein",
+          "pride",
+          "folktales"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "frankenstein",
+          "xmas",
+          "souls"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "frankenstein",
+          "xmas",
+          "souls"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "frankenstein",
+          "xmas",
+          "souls"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "frankenstein",
+          "xmas",
+          "souls"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "frankenstein",
+          "xmas",
+          "souls"
+        ]
+      }
+    },
+    {
+      "query": "r\u00e9union des parents",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "reunion"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "reunion",
+          "cookbook"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "reunion",
+          "schoolreport",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "reunion",
+          "schoolreport",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "reunion",
+          "schoolreport",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "reunion",
+          "schoolreport",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "reunion",
+          "schoolreport",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "reunion",
+          "schoolreport",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "reunion",
+          "schoolreport",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "reunion",
+          "schoolreport",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "reunion",
+          "schoolreport",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "reunion",
+          "schoolreport",
+          "church"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "reunion",
+          "birthday",
+          "contes"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "reunion",
+          "birthday",
+          "contes"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "reunion",
+          "birthday",
+          "contes"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "reunion",
+          "birthday",
+          "contes"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "reunion",
+          "birthday",
+          "contes"
+        ]
+      }
+    },
+    {
+      "query": "harvest thanksgiving",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "church",
+          "thesis"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "church",
+          "thesis",
+          "podcast"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "church",
+          "thesis",
+          "cookbook"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "church",
+          "thesis",
+          "cookbook"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "church",
+          "thesis",
+          "cookbook"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "church",
+          "thesis",
+          "cookbook"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "church",
+          "thesis",
+          "cookbook"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "church",
+          "cookbook",
+          "groundnut"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "church",
+          "thesis",
+          "cookbook"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "church",
+          "thesis",
+          "cookbook"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "church",
+          "thesis",
+          "cookbook"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "church",
+          "thesis",
+          "cookbook"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "church",
+          "thesis",
+          "song"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "church",
+          "thesis",
+          "song"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "church",
+          "thesis",
+          "song"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "church",
+          "thesis",
+          "song"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "church",
+          "thesis",
+          "song"
+        ]
+      }
+    },
+    {
+      "query": "9780306406157",
+      "kind": "keyword",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "algonotes"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "algonotes"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "algonotes",
+          "naming",
+          "pride"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "algonotes",
+          "naming",
+          "pride"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "algonotes",
+          "naming",
+          "pride"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "algonotes",
+          "naming",
+          "pride"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "algonotes",
+          "naming",
+          "pride"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "algonotes",
+          "schoolreport",
+          "labreport"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "algonotes",
+          "schoolreport",
+          "labreport"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "algonotes",
+          "schoolreport",
+          "labreport"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "algonotes",
+          "schoolreport",
+          "labreport"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "algonotes",
+          "schoolreport",
+          "labreport"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 0.0,
+        "top3": 0.0,
+        "top": [
+          "beach",
+          "naming",
+          "xmas"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "algonotes",
+          "beach",
+          "naming"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "algonotes",
+          "beach",
+          "naming"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "algonotes",
+          "beach",
+          "naming"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "algonotes",
+          "beach",
+          "naming"
+        ]
+      }
+    },
+    {
+      "query": "power bill",
+      "kind": "meaning",
+      "keyword": {
+        "ndcg": 0.0,
+        "top3": 0.0,
+        "top": [
+          "warranty"
+        ]
+      },
+      "current": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "ecg"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "ecg",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "ecg",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "ecg",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "ecg",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "ecg",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "ecg",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "ecg",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "ecg",
+          "tax"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "ecg",
+          "xmas",
+          "naming"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "ecg",
+          "xmas"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "ecg",
+          "xmas"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "ecg",
+          "xmas"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "ecg",
+          "xmas"
+        ]
+      }
+    },
+    {
+      "query": "cooking",
+      "kind": "meaning",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "cookbook",
+          "groundnut"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "cookbook",
+          "groundnut"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "jollof",
+          "groundnut"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "cookbook",
+          "groundnut"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "jollof",
+          "groundnut"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "jollof",
+          "groundnut"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "cookbook",
+          "groundnut"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "jollof",
+          "groundnut"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "jollof",
+          "groundnut"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "jollof",
+          "groundnut"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "jollof",
+          "groundnut"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "cookbook",
+          "groundnut"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "jollof",
+          "groundnut"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cookbook",
+          "jollof",
+          "groundnut"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "jollof",
+          "cookbook",
+          "groundnut"
+        ]
+      }
+    },
+    {
+      "query": "marriage",
+      "kind": "meaning",
+      "keyword": {
+        "ndcg": 0.0,
+        "top3": 0.0,
+        "top": [
+          "pride"
+        ]
+      },
+      "current": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "wedding"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding",
+          "pride",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "wedding",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "wedding",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "wedding",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "wedding",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "wedding",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "wedding",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "wedding",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "wedding",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "wedding",
+          "church"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "wedding",
+          "voicenote",
+          "xmas"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "wedding",
+          "voicenote"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "wedding",
+          "voicenote"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "wedding",
+          "voicenote"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "pride",
+          "wedding",
+          "voicenote"
+        ]
+      }
+    },
+    {
+      "query": "farming",
+      "kind": "meaning",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "thesis",
+          "church"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "thesis",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 0.9197207891481876,
+        "top3": 1.0,
+        "top": [
+          "thesis",
+          "church",
+          "podcast"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "thesis",
+          "podcast",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "thesis",
+          "podcast",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 0.9197207891481876,
+        "top3": 1.0,
+        "top": [
+          "thesis",
+          "church",
+          "podcast"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "thesis",
+          "podcast",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 0.9197207891481876,
+        "top3": 1.0,
+        "top": [
+          "thesis",
+          "church",
+          "podcast"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "thesis",
+          "podcast",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "thesis",
+          "podcast",
+          "church"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 0.9197207891481876,
+        "top3": 1.0,
+        "top": [
+          "thesis",
+          "church",
+          "podcast"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "thesis",
+          "podcast",
+          "church"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 0.8175295903539446,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "xmas",
+          "church"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 0.9197207891481876,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "church",
+          "thesis"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 0.9197207891481876,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "church",
+          "thesis"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 0.9197207891481876,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "church",
+          "thesis"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 0.9197207891481876,
+        "top3": 1.0,
+        "top": [
+          "podcast",
+          "church",
+          "thesis"
+        ]
+      }
+    },
+    {
+      "query": "hospital test results",
+      "kind": "meaning",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "birthday"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "schoolreport",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "schoolreport",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "schoolreport",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "schoolreport",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "schoolreport",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "schoolreport",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "schoolreport",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "schoolreport",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "schoolreport",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "schoolreport",
+          "payslip"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "lecturenotes",
+          "payslip"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "lecturenotes",
+          "payslip"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "lecturenotes",
+          "payslip"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "lecturenotes",
+          "payslip"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "labreport",
+          "lecturenotes",
+          "payslip"
+        ]
+      }
+    },
+    {
+      "query": "car cover",
+      "kind": "meaning",
+      "keyword": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "insurance",
+          "algonotes"
+        ]
+      },
+      "current": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "insurance",
+          "algonotes"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "warranty",
+          "paper"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "insurance",
+          "souls"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "warranty",
+          "souls"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "warranty",
+          "souls"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "insurance",
+          "souls"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "warranty",
+          "paper"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "insurance",
+          "jollof"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "warranty",
+          "jollof"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "warranty",
+          "jollof"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 0.6309297535714574,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "insurance",
+          "jollof"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "xmas",
+          "paper"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "warranty",
+          "algonotes"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "warranty",
+          "algonotes"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "warranty",
+          "algonotes"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "insurance",
+          "warranty",
+          "algonotes"
+        ]
+      }
+    },
+    {
+      "query": "my salary",
+      "kind": "meaning",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "payslip"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "payslip",
+          "cv",
+          "schoolreport"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "payslip",
+          "tax",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "payslip",
+          "tax",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "payslip",
+          "tax",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "payslip",
+          "tax",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "payslip",
+          "tax",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "payslip",
+          "tax",
+          "cv"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "payslip",
+          "tax",
+          "cv"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "payslip",
+          "tax",
+          "cv"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "payslip",
+          "tax",
+          "cv"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "payslip",
+          "tax",
+          "cv"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "payslip",
+          "tax",
+          "insurance"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "payslip",
+          "tax",
+          "insurance"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "payslip",
+          "tax",
+          "insurance"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "payslip",
+          "tax",
+          "insurance"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "payslip",
+          "tax",
+          "insurance"
+        ]
+      }
+    },
+    {
+      "query": "music",
+      "kind": "meaning",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "paper",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "paper",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "paper",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "paper",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "paper",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 0.4306765580733931,
+        "top3": 0.0,
+        "top": [
+          "schoolreport",
+          "frankenstein",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "schoolreport",
+          "frankenstein"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "schoolreport",
+          "frankenstein"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "schoolreport",
+          "frankenstein"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "schoolreport",
+          "frankenstein"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 0.3333333333333333,
+        "top3": 0.0,
+        "top": [
+          "voicenote",
+          "xmas",
+          "naming"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "voicenote",
+          "xmas"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "voicenote",
+          "xmas"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "voicenote",
+          "xmas"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "song",
+          "voicenote",
+          "xmas"
+        ]
+      }
+    },
+    {
+      "query": "when must I quit the flat",
+      "kind": "meaning",
+      "keyword": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "tax"
+        ]
+      },
+      "current": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "payslip"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "tax",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "tax",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "tax",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "tax",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "lecturenotes"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "tax",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "tax",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "tax",
+          "deed"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "tax",
+          "deed"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "lecturenotes",
+          "bank"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "tax",
+          "lecturenotes"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "tax",
+          "lecturenotes"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "tax",
+          "lecturenotes"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "tax",
+          "lecturenotes"
+        ]
+      }
+    },
+    {
+      "query": "fridge guarantee",
+      "kind": "meaning",
+      "keyword": {
+        "ndcg": 0.0,
+        "top3": 0.0,
+        "top": []
+      },
+      "current": {
+        "ndcg": 0.0,
+        "top3": 0.0,
+        "top": [
+          "folktales"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "insurance",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "insurance",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "insurance",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "insurance",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "insurance",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "insurance",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "insurance",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "insurance",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "insurance",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "insurance",
+          "lease"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "church",
+          "ecg"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "church",
+          "ecg"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "church",
+          "ecg"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "church",
+          "ecg"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "warranty",
+          "church",
+          "ecg"
+        ]
+      }
+    },
+    {
+      "query": "land papers",
+      "kind": "meaning",
+      "keyword": {
+        "ndcg": 0.52129602861432,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "deed"
+        ]
+      },
+      "current": {
+        "ndcg": 0.6590018048024133,
+        "top3": 1.0,
+        "top": [
+          "folktales",
+          "deed",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "deed",
+          "lease",
+          "ecg"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "deed",
+          "folktales",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "deed",
+          "folktales",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "deed",
+          "folktales",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "deed",
+          "folktales",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "deed",
+          "lease",
+          "paper"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "deed",
+          "folktales",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "deed",
+          "folktales",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "deed",
+          "folktales",
+          "lease"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "deed",
+          "folktales",
+          "lease"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 0.7967075809905066,
+        "top3": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "paper"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "deed",
+          "folktales",
+          "lease"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "deed",
+          "folktales",
+          "lease"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "deed",
+          "folktales",
+          "lease"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 0.9639404333166532,
+        "top3": 1.0,
+        "top": [
+          "deed",
+          "folktales",
+          "lease"
+        ]
+      }
+    },
+    {
+      "query": "my resume",
+      "kind": "meaning",
+      "keyword": {
+        "ndcg": 0.0,
+        "top3": 0.0,
+        "top": []
+      },
+      "current": {
+        "ndcg": 0.5,
+        "top3": 1.0,
+        "top": [
+          "payslip",
+          "schoolreport",
+          "cv"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cv",
+          "schoolreport",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cv",
+          "schoolreport",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cv",
+          "schoolreport",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cv",
+          "schoolreport",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (768)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cv",
+          "schoolreport",
+          "tax"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cv",
+          "schoolreport",
+          "paper"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cv",
+          "schoolreport",
+          "paper"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cv",
+          "schoolreport",
+          "paper"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cv",
+          "schoolreport",
+          "paper"
+        ]
+      },
+      "EmbeddingGemma 300M (256)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cv",
+          "schoolreport",
+          "paper"
+        ]
+      },
+      "multilingual-E5-small (384)|semantic": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cv",
+          "schoolreport",
+          "xmas"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:equal": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cv",
+          "schoolreport",
+          "xmas"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x2": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cv",
+          "schoolreport",
+          "xmas"
+        ]
+      },
+      "multilingual-E5-small (384)|fusion:semantic x3": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cv",
+          "schoolreport",
+          "xmas"
+        ]
+      },
+      "multilingual-E5-small (384)|hybrid": {
+        "ndcg": 1.0,
+        "top3": 1.0,
+        "top": [
+          "cv",
+          "schoolreport",
+          "xmas"
+        ]
+      }
+    }
+  ]
+}

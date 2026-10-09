@@ -1,0 +1,30 @@
+[0;93m2026-10-09 18:37:04.837620984 [W:onnxruntime:Default, device_discovery.cc:95 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171" because filename "5620e0c7-8062-4dce-aeb7-520c7ef76171" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+[m
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 5905.51it/s]
+Loading weights:   0%|          | 0/314 [00:00<?, ?it/s]Loading weights: 100%|██████████| 314/314 [00:00<00:00, 5595.92it/s]
+# Model probe
+
+## e5-small (Xenova/multilingual-e5-small)
+- gated: False
+- tokenizer_class: XLMRobertaTokenizer
+- fixture_count: 105
+- onnx_mb: 118.3
+- download_s: 3.3
+- onnx_ms_per_text_ci: 3.0
+- onnx_vs_sentence_transformers_cosine: [0.9964, 0.9957, 0.9951, 0.9957, 0.9968, 0.9982]
+- inputs: [{'name': 'input_ids', 'type': 'tensor(int64)', 'shape': ['batch_size', 'sequence_length']}, {'name': 'attention_mask', 'type': 'tensor(int64)', 'shape': ['batch_size', 'sequence_length']}, {'name': 'token_type_ids', 'type': 'tensor(int64)', 'shape': ['batch_size', 'sequence_length']}]
+- outputs: [{'name': 'last_hidden_state', 'type': 'tensor(float)', 'shape': ['batch_size', 'sequence_length', '384']}]
+- files: config.json (0.0 MB), onnx/model.onnx (470.3 MB), onnx/model_bnb4.onnx (397.3 MB), onnx/model_fp16.onnx (235.3 MB), onnx/model_int8.onnx (118.1 MB), onnx/model_q4.onnx (398.6 MB), onnx/model_q4f16.onnx (204.8 MB), onnx/model_quantized.onnx (118.3 MB), onnx/model_uint8.onnx (118.1 MB), quant_config.json (0.0 MB), special_tokens_map.json (0.0 MB), tokenizer.json (17.1 MB), tokenizer_config.json (0.0 MB)
+
+## embeddinggemma (onnx-community/embeddinggemma-300m-ONNX)
+- gated: False
+- tokenizer_class: GemmaTokenizer
+- fixture_count: 105
+- onnx_mb: 0.6
+- onnx_data_mb: 308.9
+- download_s: 4.4
+- onnx_ms_per_text_ci: 98.4
+- onnx_vs_sentence_transformers_cosine: [0.9951, 0.9955, 0.995, 0.9961, 0.9951, 0.9959]
+- inputs: [{'name': 'input_ids', 'type': 'tensor(int64)', 'shape': ['batch_size', 'total_sequence_length']}, {'name': 'attention_mask', 'type': 'tensor(int64)', 'shape': ['batch_size', 'total_sequence_length']}]
+- outputs: [{'name': 'last_hidden_state', 'type': 'tensor(float)', 'shape': ['batch_size', 'total_sequence_length', '768']}, {'name': 'sentence_embedding', 'type': 'tensor(float)', 'shape': ['batch_size', '768']}]
+- files: config.json (0.0 MB), generation_config.json (0.0 MB), onnx/model.onnx (0.5 MB), onnx/model.onnx_data (1234.5 MB), onnx/model_fp16.onnx (0.7 MB), onnx/model_fp16.onnx_data (617.4 MB), onnx/model_no_gather_q4.onnx (0.5 MB), onnx/model_no_gather_q4.onnx_data (194.6 MB), onnx/model_q4.onnx (0.5 MB), onnx/model_q4.onnx_data (196.7 MB), onnx/model_q4f16.onnx (0.7 MB), onnx/model_q4f16.onnx_data (175.4 MB), onnx/model_quantized.onnx (0.6 MB), onnx/model_quantized.onnx_data (308.9 MB), special_tokens_map.json (0.0 MB), tokenizer.json (20.3 MB), tokenizer_config.json (1.2 MB)
+

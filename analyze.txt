@@ -1,0 +1,5 @@
+Analyzing iPES...                                               
+
+   info • The import of 'dart:typed_data' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/foundation.dart'. Try removing the import directive • lib/app/screens/device_check.dart:2:8 • unnecessary_import
+   info • The import of 'dart:typed_data' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/foundation.dart'. Try removing the import directive • lib/app/semantic_service.dart:8:8 • unnecessary_import
+

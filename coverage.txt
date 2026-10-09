@@ -1,0 +1,33 @@
+lib/core (excluding sample data): 1518/1642 lines = 92.4%
+lib/app: 737/985 lines = 74.8%
+all of lib: 2510/2926 lines = 85.8%
+  lib/app/controller.dart: 78.3%
+  lib/app/model_runtime.dart: 0.0%
+  lib/app/screens/device_check.dart: 54.9%
+  lib/app/screens/export_sheet.dart: 87.2%
+  lib/app/screens/library_screen.dart: 98.4%
+  lib/app/screens/record_view.dart: 83.5%
+  lib/app/screens/review_screen.dart: 97.8%
+  lib/app/screens/search_models.dart: 73.3%
+  lib/app/screens/search_screen.dart: 84.0%
+  lib/app/semantic_service.dart: 61.8%
+  lib/app/services.dart: 0.0%
+  lib/app/shell.dart: 99.0%
+  lib/app/startup.dart: 0.0%
+  lib/app/theme.dart: 92.7%
+  lib/core/benchmark.dart: 100.0%
+  lib/core/cataloguer.dart: 93.3%
+  lib/core/classifier.dart: 100.0%
+  lib/core/export/citation.dart: 94.6%
+  lib/core/export/dublin_core.dart: 97.2%
+  lib/core/export/marc21.dart: 96.2%
+  lib/core/extractors.dart: 82.4%
+  lib/core/isbn.dart: 97.4%
+  lib/core/library.dart: 91.8%
+  lib/core/record.dart: 83.2%
+  lib/core/sample/builders.dart: 98.6%
+  lib/core/sample/corpus.dart: 72.7%
+  lib/core/search.dart: 99.0%
+  lib/core/semantic.dart: 83.1%
+  lib/core/text.dart: 95.7%
+  lib/core/tokenizers.dart: 95.3%

@@ -1,0 +1,78 @@
+00:00 +0: loading /home/runner/work/iPES/iPES/test/core/export_test.dart
+00:00 +0: /home/runner/work/iPES/iPES/test/core/export_test.dart: MARC 21 / ISO 2709 every record round-trips through ISO 2709 without loss
+00:00 +1: /home/runner/work/iPES/iPES/test/core/export_test.dart: MARC 21 / ISO 2709 leader carries real record length and base address
+00:00 +2: /home/runner/work/iPES/iPES/test/core/export_test.dart: MARC 21 / ISO 2709 a collection of records parses back
+00:00 +3: /home/runner/work/iPES/iPES/test/core/export_test.dart: MARC 21 / ISO 2709 field mapping
+00:00 +4: /home/runner/work/iPES/iPES/test/core/export_test.dart: MARC 21 / ISO 2709 MARCXML is well formed and matches the slim schema structure
+00:00 +5: /home/runner/work/iPES/iPES/test/core/export_test.dart: Dublin Core OAI-DC XML is well formed with dc: elements only
+00:00 +6: /home/runner/work/iPES/iPES/test/core/export_test.dart: Dublin Core JSON-LD decodes
+00:00 +7: /home/runner/work/iPES/iPES/test/core/export_test.dart: ISO 690 book with publisher and year
+00:00 +8: /home/runner/work/iPES/iPES/test/core/export_test.dart: ISO 690 two creators and ISBN
+00:00 +9: /home/runner/work/iPES/iPES/test/core/export_test.dart: ISO 690 organisation as creator and DOI
+00:00 +10: /home/runner/work/iPES/iPES/test/core/export_test.dart: Library.export produces every format
+00:00 +11: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Extractors EPUB package metadata and spine text
+00:00 +12: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Extractors PDF Info dictionary, page count and Flate-compressed text
+00:00 +13: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Extractors PDF with UTF-16 title and uncompressed text
+00:00 +14: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Extractors ID3v2.4 tags
+00:00 +15: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Extractors EXIF capture date
+00:00 +16: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Extractors file name rules
+00:00 +17: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Cataloguer drafts a complete record from an EPUB
+00:00 +18: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Cataloguer ignores a junk embedded PDF title and uses the first line
+00:00 +19: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Cataloguer finds an ISBN-10 in PDF text and treats the PDF as a book
+00:00 +20: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Cataloguer finds a DOI in text
+00:00 +21: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Cataloguer camera photo: date from EXIF, placeholder title flagged for review
+00:00 +22: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Cataloguer text notes: title from heading, creator from "By" line, language guessed
+00:00 +23: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Classifier suggests private law for a lease
+00:00 +24: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Classifier suggests cooking for recipes
+00:00 +25: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Classifier English fiction goes to 823
+00:00 +26: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Classifier returns no suggestion when nothing matches
+00:00 +27: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Library reports duplicates by content hash
+00:00 +28: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Library saves and loads every field
+00:00 +29: /home/runner/work/iPES/iPES/test/core/cataloguer_test.dart: Library collection statistics
+00:00 +30: loading /home/runner/work/iPES/iPES/test/core/tokenizers_test.dart
+00:01 +30: /home/runner/work/iPES/iPES/test/core/tokenizers_test.dart: e5-small tokenizer matches the reference token ids
+e5-small: 105/105 exact, 0.74 ms per text
+00:01 +31: /home/runner/work/iPES/iPES/test/core/benchmark_test.dart: cataloguing stage reports a typical file and the 20-page PDF target
+00:02 +32: /home/runner/work/iPES/iPES/test/core/tokenizers_test.dart: embeddinggemma tokenizer matches the reference token ids
+00:02 +33: /home/runner/work/iPES/iPES/test/core/tokenizers_test.dart: embeddinggemma tokenizer matches the reference token ids
+00:02 +34: /home/runner/work/iPES/iPES/test/core/tokenizers_test.dart: embeddinggemma tokenizer matches the reference token ids
+embeddinggemma: 105/105 exact, 0.25 ms per text
+00:03 +35: loading /home/runner/work/iPES/iPES/test/core/isbn_and_text_test.dart
+00:03 +35: /home/runner/work/iPES/iPES/test/core/isbn_and_text_test.dart: ISBN (ISO 2108) validates ISBN-10 and ISBN-13 check digits
+00:03 +36: /home/runner/work/iPES/iPES/test/core/isbn_and_text_test.dart: ISBN (ISO 2108) converts ISBN-10 to ISBN-13
+00:03 +37: /home/runner/work/iPES/iPES/test/core/isbn_and_text_test.dart: ISBN (ISO 2108) finds ISBNs in free text, de-duplicated, as ISBN-13
+00:03 +38: /home/runner/work/iPES/iPES/test/core/isbn_and_text_test.dart: Text tools stems plurals and verb forms
+00:03 +39: /home/runner/work/iPES/iPES/test/core/isbn_and_text_test.dart: Text tools drops stop words
+00:03 +40: /home/runner/work/iPES/iPES/test/core/isbn_and_text_test.dart: Text tools guesses English and French
+00:03 +41: /home/runner/work/iPES/iPES/test/core/search_test.dart: Query parsing extracts media type and year facets
+00:03 +42: /home/runner/work/iPES/iPES/test/core/search_test.dart: Query parsing explicit facets
+00:04 +43: /home/runner/work/iPES/iPES/test/core/search_test.dart: Search a question finds the lease and quotes the notice clause
+00:04 +44: /home/runner/work/iPES/iPES/test/core/search_test.dart: Search facets filter by type and year
+00:04 +45: /home/runner/work/iPES/iPES/test/core/search_test.dart: Search identifier search
+00:04 +46: /home/runner/work/iPES/iPES/test/core/search_test.dart: Search meaning-based ranking finds items keyword search misses
+00:04 +47: /home/runner/work/iPES/iPES/test/core/search_test.dart: Search stemming: plural query matches singular text
+00:04 +48: /home/runner/work/iPES/iPES/test/core/search_test.dart: Search empty text with a facet lists that type
+00:04 +49: /home/runner/work/iPES/iPES/test/core/search_test.dart: hashing embedder is deterministic and normalised
+00:04 +50: /home/runner/work/iPES/iPES/test/core/search_test.dart: Incremental index add, update and remove keep results correct without a rebuild
+00:04 +51: /home/runner/work/iPES/iPES/test/core/search_test.dart: Incremental index many removals compact the index and keep it correct
+00:04 +52: /home/runner/work/iPES/iPES/test/core/search_test.dart: Incremental index library edits are searchable straight away
+00:04 +53: loading /home/runner/work/iPES/iPES/test/app/semantic_service_test.dart
+00:05 +53: /home/runner/work/iPES/iPES/test/app/semantic_service_test.dart: finds downloaded models and remembers the chosen one
+00:05 +54: /home/runner/work/iPES/iPES/test/widget/app_flow_test.dart: core flow on a phone: import → review → search → export
+00:05 +55: /home/runner/work/iPES/iPES/test/widget/app_flow_test.dart: core flow on a phone: import → review → search → export
+00:05 +56: /home/runner/work/iPES/iPES/test/widget/app_flow_test.dart: core flow on a phone: import → review → search → export
+00:05 +57: /home/runner/work/iPES/iPES/test/widget/app_flow_test.dart: core flow on a phone: import → review → search → export
+00:05 +58: /home/runner/work/iPES/iPES/test/widget/app_flow_test.dart: core flow on a phone: import → review → search → export
+00:06 +59: /home/runner/work/iPES/iPES/test/widget/app_flow_test.dart: core flow on a phone: import → review → search → export
+00:07 +60: /home/runner/work/iPES/iPES/test/widget/app_flow_test.dart: expanded layout (tablet landscape) shows list and record side by side
+00:07 +61: /home/runner/work/iPES/iPES/test/widget/app_flow_test.dart: medium width uses a navigation rail with one pane
+00:07 +62: /home/runner/work/iPES/iPES/test/widget/large_text_test.dart: phone screens at text scale 1.3
+00:08 +63: /home/runner/work/iPES/iPES/test/widget/large_text_test.dart: phone screens at text scale 1.3
+00:08 +64: /home/runner/work/iPES/iPES/test/widget/large_text_test.dart: phone screens at text scale 1.3
+00:08 +65: /home/runner/work/iPES/iPES/test/widget/large_text_test.dart: phone screens at text scale 1.3
+00:09 +66: /home/runner/work/iPES/iPES/test/widget/large_text_test.dart: device check results at text scale 1.3
+00:10 +67: /home/runner/work/iPES/iPES/test/widget/large_text_test.dart: phone screens at text scale 1.6
+00:10 +68: /home/runner/work/iPES/iPES/test/widget/large_text_test.dart: device check results at text scale 1.6
+00:11 +69: /home/runner/work/iPES/iPES/test/widget/large_text_test.dart: phone screens at text scale 2.0
+00:11 +70: /home/runner/work/iPES/iPES/test/widget/large_text_test.dart: device check results at text scale 2.0
+00:12 +71: All tests passed!

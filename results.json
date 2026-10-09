@@ -1,0 +1,452 @@
+{
+  "cataloguing": {
+    "items": 188,
+    "fieldAccuracy": {
+      "title": 0.9945652173913043,
+      "creator": 0.9938650306748467,
+      "date": 0.9862068965517241,
+      "identifier": 1.0,
+      "language": 0.9869281045751634
+    },
+    "fieldCounts": {
+      "title": [
+        183,
+        184
+      ],
+      "creator": [
+        162,
+        163
+      ],
+      "date": [
+        143,
+        145
+      ],
+      "identifier": [
+        40,
+        40
+      ],
+      "language": [
+        151,
+        153
+      ]
+    },
+    "coreFieldAccuracy": 0.9924812030075187,
+    "acceptedWithAtMostOneEdit": 0.9946808510638298,
+    "medianDraftMs": 0.404,
+    "p95DraftMs": 2.996,
+    "sampleMisses": [
+      "thesis creator: got \"\", want \"Yaw Darko\"",
+      "thesis date: got \"\", want \"2019\"",
+      "ecg language: got \"\", want \"eng\"",
+      "labreport language: got \"\", want \"eng\"",
+      "jollof date: got \"\", want \"2024\"",
+      "birthday title: got \"80th Birthday\", want \"Grandma Akosua 80th birthday\""
+    ]
+  },
+  "pdf20DraftMs": 28.857,
+  "search": {
+    "queries": 38,
+    "ndcg10Hybrid": 0.9040305718515317,
+    "ndcg10Keyword": 0.8442434554691507,
+    "ndcg10HybridMeaningQueries": 0.7543159221263989,
+    "ndcg10KeywordMeaningQueries": 0.5960188151821482,
+    "ndcg10HybridKeywordQueries": 0.973129640955439,
+    "successAt3Hybrid": 0.9736842105263158,
+    "liftOverKeyword": 0.07081738803548908,
+    "perQuery": [
+      {
+        "query": "what does my lease say about notice",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "lease"
+        ]
+      },
+      {
+        "query": "tenancy agreement",
+        "kind": "keyword",
+        "ndcg10": 0.9639404333166534,
+        "top": [
+          "lease",
+          "schoolreport",
+          "deed"
+        ]
+      },
+      {
+        "query": "rent deposit",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "bank"
+        ]
+      },
+      {
+        "query": "electricity receipt",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "ecg",
+          "warranty",
+          "bank"
+        ]
+      },
+      {
+        "query": "jollof",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "jollof",
+          "cookbook"
+        ]
+      },
+      {
+        "query": "recipes",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "cookbook",
+          "groundnut",
+          "jollof"
+        ]
+      },
+      {
+        "query": "data structures lecture",
+        "kind": "keyword",
+        "ndcg10": 0.9514426589871553,
+        "top": [
+          "lectureaudio",
+          "dsbook",
+          "lecturenotes"
+        ]
+      },
+      {
+        "query": "hash tables",
+        "kind": "keyword",
+        "ndcg10": 0.9072836011519267,
+        "top": [
+          "lecturenotes",
+          "dsbook",
+          "warranty"
+        ]
+      },
+      {
+        "query": "videos from 2024",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "naming"
+        ]
+      },
+      {
+        "query": "wedding video",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "wedding"
+        ]
+      },
+      {
+        "query": "photos of grandma",
+        "kind": "keyword",
+        "ndcg10": 0.82623465712856,
+        "top": [
+          "grandma"
+        ]
+      },
+      {
+        "query": "austen",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "pride",
+          "cookbook"
+        ]
+      },
+      {
+        "query": "folk tales",
+        "kind": "keyword",
+        "ndcg10": 0.82623465712856,
+        "top": [
+          "folktales",
+          "souls"
+        ]
+      },
+      {
+        "query": "cocoa",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "podcast",
+          "thesis",
+          "church"
+        ]
+      },
+      {
+        "query": "full blood count",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "labreport"
+        ]
+      },
+      {
+        "query": "insurance policy",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "insurance",
+          "warranty",
+          "souls"
+        ]
+      },
+      {
+        "query": "tax return",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "tax",
+          "payslip",
+          "lease"
+        ]
+      },
+      {
+        "query": "bank statement march",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "bank",
+          "lease",
+          "ecg"
+        ]
+      },
+      {
+        "query": "end of term report",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "schoolreport",
+          "lease",
+          "labreport"
+        ]
+      },
+      {
+        "query": "highlife",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "song",
+          "folktales"
+        ]
+      },
+      {
+        "query": "metadata personal archives",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "paper",
+          "cv",
+          "tax"
+        ]
+      },
+      {
+        "query": "slave narrative",
+        "kind": "keyword",
+        "ndcg10": 0.82623465712856,
+        "top": [
+          "equiano",
+          "insurance",
+          "warranty"
+        ]
+      },
+      {
+        "query": "frankenstein",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "frankenstein"
+        ]
+      },
+      {
+        "query": "réunion des parents",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "reunion",
+          "cookbook"
+        ]
+      },
+      {
+        "query": "harvest thanksgiving",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "church",
+          "thesis",
+          "podcast"
+        ]
+      },
+      {
+        "query": "9780306406157",
+        "kind": "keyword",
+        "ndcg10": 1.0,
+        "top": [
+          "algonotes"
+        ]
+      },
+      {
+        "query": "power bill",
+        "kind": "meaning",
+        "ndcg10": 0.6309297535714574,
+        "top": [
+          "warranty",
+          "ecg"
+        ]
+      },
+      {
+        "query": "cooking",
+        "kind": "meaning",
+        "ndcg10": 1.0,
+        "top": [
+          "jollof",
+          "cookbook",
+          "groundnut"
+        ]
+      },
+      {
+        "query": "marriage",
+        "kind": "meaning",
+        "ndcg10": 0.6309297535714574,
+        "top": [
+          "pride",
+          "wedding"
+        ]
+      },
+      {
+        "query": "farming",
+        "kind": "meaning",
+        "ndcg10": 1.0,
+        "top": [
+          "podcast",
+          "thesis",
+          "church"
+        ]
+      },
+      {
+        "query": "hospital test results",
+        "kind": "meaning",
+        "ndcg10": 1.0,
+        "top": [
+          "labreport",
+          "birthday"
+        ]
+      },
+      {
+        "query": "car cover",
+        "kind": "meaning",
+        "ndcg10": 0.6309297535714574,
+        "top": [
+          "warranty",
+          "insurance",
+          "algonotes"
+        ]
+      },
+      {
+        "query": "my salary",
+        "kind": "meaning",
+        "ndcg10": 1.0,
+        "top": [
+          "payslip",
+          "cv",
+          "schoolreport"
+        ]
+      },
+      {
+        "query": "music",
+        "kind": "meaning",
+        "ndcg10": 1.0,
+        "top": [
+          "song",
+          "folktales"
+        ]
+      },
+      {
+        "query": "when must I quit the flat",
+        "kind": "meaning",
+        "ndcg10": 1.0,
+        "top": [
+          "lease",
+          "deed",
+          "tax"
+        ]
+      },
+      {
+        "query": "fridge guarantee",
+        "kind": "meaning",
+        "ndcg10": 0.0,
+        "top": [
+          "folktales"
+        ]
+      },
+      {
+        "query": "land papers",
+        "kind": "meaning",
+        "ndcg10": 0.6590018048024133,
+        "top": [
+          "folktales",
+          "deed",
+          "lease"
+        ]
+      },
+      {
+        "query": "my resume",
+        "kind": "meaning",
+        "ndcg10": 0.5,
+        "top": [
+          "payslip",
+          "schoolreport",
+          "cv"
+        ]
+      }
+    ]
+  },
+  "classification": {
+    "items": 157,
+    "top3MainClass": 0.89171974522293,
+    "top3Division": 0.7834394904458599,
+    "top1MainClass": 0.8726114649681529,
+    "sampleMisses": [
+      "contes: suggested ; want 398",
+      "schoolreport: suggested 510; want 371",
+      "warranty: suggested 363; want 643",
+      "reunion: suggested ; want 371",
+      "gen13: suggested 610; want 362",
+      "gen18: suggested 610; want 362",
+      "gen23: suggested 610; want 362",
+      "gen33: suggested 610; want 362",
+      "gen38: suggested 610; want 362",
+      "gen57: suggested 610; want 362",
+      "gen78: suggested 610; want 362",
+      "gen112: suggested 610; want 362",
+      "gen126: suggested 610; want 362",
+      "gen127: suggested 610; want 362",
+      "gen130: suggested 610; want 362",
+      "gen136: suggested 610; want 362",
+      "gen149: suggested 610; want 362"
+    ]
+  },
+  "conformance": {
+    "records": 188,
+    "iso2709RoundTrip": 1.0,
+    "marcxmlWellFormed": 1.0,
+    "dcWellFormed": 1.0
+  },
+  "completeness": 0.8238031914893617,
+  "performance": {
+    "items": 20000,
+    "indexBuildMs": 7132,
+    "keywordP95Ms": 15.607,
+    "hybridP95Ms": 51.742
+  }
+}
