@@ -108,6 +108,17 @@ jobs:
           pip install --quiet "sentence-transformers>=5.1,<7" "transformers>=4.56"
           python tool/embedding_eval.py 2>&1 | tee build/eval/embedding_log.txt
 
+      - name: Probe on-device model files and tokenizers
+        if: always()
+        continue-on-error: true
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        shell: bash
+        run: |
+          set -o pipefail
+          pip install --quiet onnxruntime
+          python tool/model_probe.py 2>&1 | tee build/eval/model_probe_log.txt
+
       - name: Publish results to the ci-results branch
         if: always()
         shell: bash
