@@ -64,8 +64,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
       builder: (context, _) {
         final queue = _queue;
         if (queue.isEmpty) {
+          // Scrollable so the message never overflows at large text sizes.
           return Center(
-            child: Padding(
+            child: SingleChildScrollView(
               padding: const EdgeInsets.all(32),
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 const Icon(Icons.task_alt, size: 48, color: IpesColors.good),
