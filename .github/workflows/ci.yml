@@ -39,6 +39,48 @@ jobs:
           set -o pipefail
           flutter analyze --no-fatal-infos --no-fatal-warnings | tee build/eval/analyze.txt
 
+      - name: Export search evaluation set
+        shell: bash
+        run: |
+          mkdir -p build/eval
+          flutter test test/eval/search_export_test.dart
+
+      - uses: actions/setup-python@v5
+        if: always()
+        with:
+          python-version: '3.12'
+
+      - uses: actions/cache@v4
+        if: always()
+        with:
+          path: ~/.cache/huggingface
+          key: hf-models-v1
+
+      - name: Compare embedding models (EmbeddingGemma, E5)
+        # Uses build/eval/search_set.json from the evaluation step. Never blocks the build.
+        if: always()
+        continue-on-error: true
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        shell: bash
+        run: |
+          set -o pipefail
+          if [ -z "$HF_TOKEN" ]; then echo "HF_TOKEN secret is not set; EmbeddingGemma will be skipped."; fi
+          pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          pip install --quiet "sentence-transformers>=5.1,<7" "transformers>=4.56"
+          python tool/embedding_eval.py 2>&1 | tee build/eval/embedding_log.txt
+
+      - name: Probe on-device model files and tokenizers
+        if: always()
+        continue-on-error: true
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        shell: bash
+        run: |
+          set -o pipefail
+          pip install --quiet onnxruntime
+          python tool/model_probe.py 2>&1 | tee build/eval/model_probe_log.txt
+
       - name: Unit and widget tests (with coverage)
         shell: bash
         run: |
@@ -82,42 +124,6 @@ jobs:
         run: |
           set -o pipefail
           flutter test test/eval --reporter expanded | tee build/eval/eval_log.txt
-
-      - uses: actions/setup-python@v5
-        if: always()
-        with:
-          python-version: '3.12'
-
-      - uses: actions/cache@v4
-        if: always()
-        with:
-          path: ~/.cache/huggingface
-          key: hf-models-v1
-
-      - name: Compare embedding models (EmbeddingGemma, E5)
-        # Uses build/eval/search_set.json from the evaluation step. Never blocks the build.
-        if: always()
-        continue-on-error: true
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        shell: bash
-        run: |
-          set -o pipefail
-          if [ -z "$HF_TOKEN" ]; then echo "HF_TOKEN secret is not set; EmbeddingGemma will be skipped."; fi
-          pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
-          pip install --quiet "sentence-transformers>=5.1,<7" "transformers>=4.56"
-          python tool/embedding_eval.py 2>&1 | tee build/eval/embedding_log.txt
-
-      - name: Probe on-device model files and tokenizers
-        if: always()
-        continue-on-error: true
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        shell: bash
-        run: |
-          set -o pipefail
-          pip install --quiet onnxruntime
-          python tool/model_probe.py 2>&1 | tee build/eval/model_probe_log.txt
 
       - name: Publish results to the ci-results branch
         if: always()

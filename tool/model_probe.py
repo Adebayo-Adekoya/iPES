@@ -149,10 +149,14 @@ def main() -> int:
         # ONNX session and a parity check against sentence-transformers.
         try:
             t0 = time.time()
-            onnx_path = Path(hf_hub_download(c["repo"], c["onnx"]))
+            # Download into a plain folder so external weight files sit next
+            # to the .onnx file, as they will on the phone.
+            local = MODELS_DIR / c["slug"]
+            onnx_path = Path(hf_hub_download(c["repo"], c["onnx"], local_dir=local))
             data_name = c["onnx"] + "_data"
             if any(f["name"] == data_name for f in entry["files"]):
-                hf_hub_download(c["repo"], data_name)
+                hf_hub_download(c["repo"], data_name, local_dir=local)
+                entry["onnx_data_mb"] = round((local / data_name).stat().st_size / 1e6, 1)
             entry["download_s"] = round(time.time() - t0, 1)
             entry["onnx_mb"] = round(onnx_path.stat().st_size / 1e6, 1)
             sess = ort.InferenceSession(str(onnx_path), providers=["CPUExecutionProvider"])
@@ -211,7 +215,7 @@ def main() -> int:
     lines = ["# Model probe", ""]
     for slug, e in probe["models"].items():
         lines.append(f"## {slug} ({e['repo']})")
-        for k in ("gated", "tokenizer_class", "fixture_count", "onnx_mb", "download_s", "onnx_ms_per_text_ci",
+        for k in ("gated", "tokenizer_class", "fixture_count", "onnx_mb", "onnx_data_mb", "download_s", "onnx_ms_per_text_ci",
                   "onnx_vs_sentence_transformers_cosine", "error", "onnx_error"):
             if k in e:
                 lines.append(f"- {k}: {e[k]}")
