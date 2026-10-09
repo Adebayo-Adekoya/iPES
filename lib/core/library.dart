@@ -117,28 +117,37 @@ class Library {
       if (r.sha256 == draft.sha256) return ImportOutcome(r, duplicateOf: r);
     }
     _records.add(draft);
-    _indexDirty = true;
+    if (!_indexDirty) engine.add(draft);
     return ImportOutcome(draft);
   }
 
   /// Adds records that were built elsewhere (sample data, restore).
   void addAll(Iterable<CatalogueRecord> records) {
-    _records.addAll(records);
-    _indexDirty = true;
+    final list = records.toList();
+    _records.addAll(list);
+    if (!_indexDirty) {
+      for (final r in list) {
+        engine.add(r);
+      }
+    }
   }
 
   void confirm(CatalogueRecord r) {
-    r.confirm();
-    _indexDirty = true;
+    r.confirm(); // status is not searchable, so the index is unchanged
   }
 
-  void updated(CatalogueRecord r) => _indexDirty = true;
+  /// Call after editing a record's fields so search sees the change.
+  void updated(CatalogueRecord r) {
+    if (!_indexDirty) engine.update(r);
+  }
 
   void remove(String id) {
     _records.removeWhere((r) => r.id == id);
-    _indexDirty = true;
+    if (!_indexDirty) engine.remove(id);
   }
 
+  /// Builds the whole index once (after loading); later changes are applied
+  /// one record at a time.
   void _ensureIndex() {
     if (!_indexDirty) return;
     engine.indexAll(_records);

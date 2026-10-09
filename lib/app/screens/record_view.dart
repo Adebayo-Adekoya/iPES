@@ -101,8 +101,8 @@ class _RecordViewState extends State<RecordView> {
         const SizedBox(height: 20),
         SegmentedButton<bool>(
           segments: const [
-            ButtonSegment(value: false, label: Text('Simple · Dublin Core')),
-            ButtonSegment(value: true, label: Text('Expert · MARC 21')),
+            ButtonSegment(value: false, label: Text('Dublin Core', maxLines: 1, overflow: TextOverflow.ellipsis)),
+            ButtonSegment(value: true, label: Text('MARC 21', maxLines: 1, overflow: TextOverflow.ellipsis)),
           ],
           selected: {marc},
           showSelectedIcon: false,

@@ -136,20 +136,23 @@ class _DeviceCheckPageState extends State<DeviceCheckPage> {
             Card(
               child: Column(children: [
                 for (final r in rows)
-                  ListTile(
+                  Padding(
                     key: Key('row-${r.metric}'),
-                    dense: true,
-                    title: Text(r.metric, style: const TextStyle(fontSize: 14)),
-                    subtitle: Text('Target ${r.target}'),
-                    trailing: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
+                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                    child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Expanded(
+                        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Text(r.metric, style: const TextStyle(fontSize: 14)),
+                          Text('Target ${r.target}', style: const TextStyle(fontSize: 12, color: IpesColors.muted)),
+                        ]),
+                      ),
+                      const SizedBox(width: 12),
+                      Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
                         Text(r.measured,
                             style: const TextStyle(fontWeight: FontWeight.w600, fontFeatures: [FontFeature.tabularFigures()])),
                         _StatusChip(r.met),
-                      ],
-                    ),
+                      ]),
+                    ]),
                   ),
               ]),
             ),

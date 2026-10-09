@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ipes/core/cataloguer.dart';
 import 'package:ipes/core/library.dart';
@@ -70,5 +73,48 @@ void main() {
     expect(a, b);
     final norm = a.fold<double>(0, (s, x) => s + x * x);
     expect(norm, closeTo(1, 1e-9));
+  });
+
+  group('Incremental index', () {
+    CatalogueRecord rec(String id, String title, {MediaType type = MediaType.document}) =>
+        CatalogueRecord(id: id, mediaType: type, fileName: '$id.txt', values: {Dc.title: [FieldValue(title)]});
+
+    test('add, update and remove keep results correct without a rebuild', () {
+      final engine = SearchEngine()..indexAll([rec('a', 'cocoa harvest report'), rec('b', 'jollof recipe')]);
+      expect(engine.size, 2);
+      engine.add(rec('c', 'cocoa prices podcast'));
+      expect(engine.search('cocoa', mode: SearchMode.keyword).hits.map((h) => h.record.id), containsAll(['a', 'c']));
+
+      final b = rec('b', 'groundnut soup');
+      engine.update(b);
+      expect(engine.search('jollof', mode: SearchMode.keyword).hits, isEmpty);
+      expect(engine.search('groundnut', mode: SearchMode.keyword).hits.single.record.id, 'b');
+
+      expect(engine.remove('a'), isTrue);
+      expect(engine.remove('a'), isFalse);
+      expect(engine.size, 2);
+      expect(engine.search('cocoa').hits.map((h) => h.record.id), ['c']);
+    });
+
+    test('many removals compact the index and keep it correct', () {
+      final engine = SearchEngine()..indexAll([for (var i = 0; i < 200; i++) rec('r$i', 'item number $i budget')]);
+      for (var i = 0; i < 150; i++) {
+        engine.remove('r$i');
+      }
+      expect(engine.size, 50);
+      final ids = engine.search('budget', mode: SearchMode.keyword, limit: 100).hits.map((h) => h.record.id).toSet();
+      expect(ids, {for (var i = 150; i < 200; i++) 'r$i'});
+    });
+
+    test('library edits are searchable straight away', () {
+      final library = Library();
+      final first = library.importFile(ImportedFile('notes.txt', Uint8List.fromList(utf8.encode('Borehole contract\n\nDrilling terms.')))).record;
+      expect(library.search('borehole').hits.single.record.id, first.id);
+      first.setOne(Dc.title, const FieldValue('Water well agreement'));
+      library.updated(first);
+      expect(library.search('well agreement', mode: SearchMode.keyword).hits.single.record.id, first.id);
+      library.remove(first.id);
+      expect(library.search('borehole').hits, isEmpty);
+    });
   });
 }

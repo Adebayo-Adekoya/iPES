@@ -131,7 +131,7 @@ void main() {
     final c = await pumpApp(tester, const Size(1194, 834), seed: true);
     c.select(c.records.first.id);
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Expert · MARC 21'));
+    await tester.tap(find.text('MARC 21'));
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('marc-view')), findsOneWidget);
     final marc = tester.widget<SelectableText>(

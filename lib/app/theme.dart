@@ -99,8 +99,13 @@ class MediaTile extends StatelessWidget {
       height: height,
       alignment: Alignment.center,
       decoration: BoxDecoration(color: IpesColors.tint(record.mediaType), borderRadius: BorderRadius.circular(8)),
-      child: Text(ext.length > 4 ? ext.substring(0, 4) : ext,
-          style: const TextStyle(fontFamily: 'monospace', fontSize: 11, color: IpesColors.ink)),
+      padding: const EdgeInsets.all(4),
+      // Scale the label down rather than wrapping it at large text sizes.
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Text(ext.length > 4 ? ext.substring(0, 4) : ext,
+            maxLines: 1, style: const TextStyle(fontFamily: 'monospace', fontSize: 11, color: IpesColors.ink)),
+      ),
     );
   }
 }

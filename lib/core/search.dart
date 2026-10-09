@@ -207,30 +207,43 @@ class SearchEngine {
   static const _rrfK = 60;
   static const _maxTextTerms = 20000;
 
-  final List<CatalogueRecord> _docs = [];
+  // Slot-based index: removing a record leaves an empty slot (null), so
+  // adding, editing or removing one record never rebuilds the whole index.
+  final List<CatalogueRecord?> _docs = [];
   final List<int> _lengths = [];
-  final List<List<double>> _vectors = [];
+  final List<List<double>?> _vectors = [];
+  final List<Map<String, Set<String>>?> _termFields = []; // per slot: term -> fields it matched
   final Map<String, Map<int, double>> _postings = {};
-  final Map<String, Set<String>> _fieldsOfTerm = {}; // "term|doc" -> fields (for reasons)
-  double _avgLength = 1;
+  final Map<String, int> _slotOf = {};
+  int _live = 0;
+  int _totalLength = 0;
 
-  int get size => _docs.length;
+  double get _avgLength => _live == 0 ? 1 : _totalLength / _live;
+
+  /// Number of records in the index.
+  int get size => _live;
 
   void indexAll(Iterable<CatalogueRecord> records) {
     _docs.clear();
     _lengths.clear();
     _vectors.clear();
+    _termFields.clear();
     _postings.clear();
-    _fieldsOfTerm.clear();
+    _slotOf.clear();
+    _live = 0;
+    _totalLength = 0;
     for (final r in records) {
-      _add(r);
+      add(r);
     }
-    _avgLength = _lengths.isEmpty ? 1 : _lengths.reduce((a, b) => a + b) / _lengths.length;
   }
 
-  void _add(CatalogueRecord r) {
+  /// Adds or replaces one record.
+  void add(CatalogueRecord r) {
+    remove(r.id);
     final doc = _docs.length;
     _docs.add(r);
+    _slotOf[r.id] = doc;
+    final termFields = <String, Set<String>>{};
     var length = 0;
     void field(String name, String value, double weight, {int max = 1 << 30}) {
       var terms = TextTools.terms(value);
@@ -238,7 +251,7 @@ class SearchEngine {
       for (final t in terms) {
         final p = _postings.putIfAbsent(t, () => {});
         p[doc] = (p[doc] ?? 0) + weight;
-        _fieldsOfTerm.putIfAbsent('$t|$doc', () => {}).add(name);
+        termFields.putIfAbsent(t, () => {}).add(name);
       }
       length += terms.length;
     }
@@ -250,7 +263,11 @@ class SearchEngine {
     field('publisher', r.text(Dc.publisher), 1);
     field('identifier', r.texts(Dc.identifier).join(' '), 1);
     field('text', r.textContent, 1, max: _maxTextTerms);
-    _lengths.add(math.max(1, length));
+    length = math.max(1, length);
+    _lengths.add(length);
+    _termFields.add(termFields);
+    _live++;
+    _totalLength += length;
 
     final summaryText = [
       r.title,
@@ -262,6 +279,31 @@ class SearchEngine {
     _vectors.add(embedder.embed(summaryText));
   }
 
+  /// Re-indexes a record after its fields changed.
+  void update(CatalogueRecord r) => add(r);
+
+  /// Removes a record. Returns false if it was not indexed.
+  bool remove(String id) {
+    final doc = _slotOf.remove(id);
+    if (doc == null) return false;
+    for (final t in _termFields[doc]!.keys) {
+      final p = _postings[t];
+      if (p == null) continue;
+      p.remove(doc);
+      if (p.isEmpty) _postings.remove(t);
+    }
+    _live--;
+    _totalLength -= _lengths[doc];
+    _docs[doc] = null;
+    _vectors[doc] = null;
+    _termFields[doc] = null;
+    // Compact when more than half the slots are empty.
+    if (_docs.length > 64 && _live * 2 < _docs.length) {
+      indexAll(_docs.whereType<CatalogueRecord>().toList());
+    }
+    return true;
+  }
+
   SearchResult search(String raw, {int limit = 20, SearchMode mode = SearchMode.hybrid}) {
     final watch = Stopwatch()..start();
     final q = QueryParser.parse(raw);
@@ -269,11 +311,14 @@ class SearchEngine {
         (q.types.isEmpty || q.types.contains(r.mediaType)) &&
         (q.year == null || r.text(Dc.date).startsWith(q.year!) || r.addedAt.year.toString() == q.year);
 
-    final candidates = <int>[for (var i = 0; i < _docs.length; i++) if (allowed(_docs[i])) i];
+    final candidates = <int>[
+      for (var i = 0; i < _docs.length; i++)
+        if (_docs[i] != null && allowed(_docs[i]!)) i,
+    ];
     final terms = TextTools.terms(q.text).toSet().toList();
 
     if (terms.isEmpty) {
-      final list = candidates.map((i) => _docs[i]).toList()
+      final list = candidates.map((i) => _docs[i]!).toList()
         ..sort((a, b) => b.addedAt.compareTo(a.addedAt));
       final hits = [for (final r in list.take(limit)) SearchHit(r, 0, q.facetLabels)];
       return SearchResult(q, hits, watch.elapsed);
@@ -300,20 +345,21 @@ class SearchEngine {
       final reasons = <String>[];
       final fields = <String>{};
       for (final t in terms) {
-        fields.addAll(_fieldsOfTerm['$t|$doc'] ?? const {});
+        fields.addAll(_termFields[doc]![t] ?? const {});
       }
       if (fields.isNotEmpty) reasons.add('Matched ${fields.join(', ')}');
       if (!keyword.containsKey(doc) && semantic.containsKey(doc)) reasons.add('Similar meaning');
       reasons.addAll(q.facetLabels);
       // Passages only for the top results: they are the expensive part.
-      final passage = hits.length < 3 ? bestPassage(_docs[doc].textContent, q.text) : null;
-      hits.add(SearchHit(_docs[doc], e.value, reasons, passage: passage));
+      final record = _docs[doc]!;
+      final passage = hits.length < 3 ? bestPassage(record.textContent, q.text) : null;
+      hits.add(SearchHit(record, e.value, reasons, passage: passage));
     }
     return SearchResult(q, hits, watch.elapsed);
   }
 
   Map<int, double> _bm25(List<String> terms, Set<int> allowed) {
-    final n = _docs.length;
+    final n = _live;
     final scores = <int, double>{};
     for (final t in terms) {
       final postings = _postings[t];
@@ -332,7 +378,7 @@ class SearchEngine {
     final qv = embedder.embed(text);
     final scores = <int, double>{};
     for (final doc in candidates) {
-      final dv = _vectors[doc];
+      final dv = _vectors[doc]!;
       var dot = 0.0;
       for (var i = 0; i < qv.length; i++) {
         dot += qv[i] * dv[i];

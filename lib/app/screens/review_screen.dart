@@ -70,12 +70,16 @@ class _ReviewScreenState extends State<ReviewScreen> {
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 const Icon(Icons.task_alt, size: 48, color: IpesColors.good),
                 const SizedBox(height: 12),
-                const Text('Nothing to review', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+                Text(_skipped.isEmpty ? 'Nothing to review' : 'All done except what you skipped',
+                    textAlign: TextAlign.center, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
                 const SizedBox(height: 6),
                 const Text('New items are drafted on your device and wait here for you to check.',
                     textAlign: TextAlign.center, style: TextStyle(color: IpesColors.muted)),
                 if (_skipped.isNotEmpty)
-                  TextButton(onPressed: () => setState(_skipped.clear), child: const Text('Show skipped')),
+                  TextButton(
+                    onPressed: () => setState(_skipped.clear),
+                    child: Text('Review ${_skipped.length} skipped ${_skipped.length == 1 ? 'item' : 'items'}'),
+                  ),
               ]),
             ),
           );

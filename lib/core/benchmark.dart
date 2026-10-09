@@ -116,6 +116,22 @@ List<Map<String, Object?>> benchmarkSearch(int items) {
   }
   final kwP95 = _percentile(kw, 0.95), hyP95 = _percentile(hy, 0.95);
 
+  // Incremental update: add, edit and remove one record in the full index.
+  final extra = CatalogueRecord(
+    id: 'new-item',
+    mediaType: MediaType.document,
+    fileName: 'new.pdf',
+    textContent: words(150),
+    addedAt: DateTime(2026, 1, 1),
+    values: {Dc.title: [FieldValue(words(4))]},
+  );
+  final updateWatch = Stopwatch()..start();
+  engine.add(extra);
+  extra.setOne(Dc.title, FieldValue(words(5)));
+  engine.update(extra);
+  engine.remove(extra.id);
+  final updateMs = updateWatch.elapsedMicroseconds / 1000 / 3;
+
   final exportWatch = Stopwatch()..start();
   Marc21.collectionToIso2709(records.take(1000).map((r) => Marc21.fromRecord(r)));
   final exportMs = exportWatch.elapsedMicroseconds / 1000;
@@ -124,7 +140,8 @@ List<Map<String, Object?>> benchmarkSearch(int items) {
   return [
     BenchmarkRow('Keyword search p95, $n items', _ms(kwP95), '≤ 150 ms', items >= 20000 ? kwP95 <= 150 : null).toJson(),
     BenchmarkRow('Smart search p95, $n items', _ms(hyP95), '≤ 500 ms', items >= 20000 ? hyP95 <= 500 : null).toJson(),
-    BenchmarkRow('Build search index, $n items (one-off)', _ms(indexMs), '—', null).toJson(),
+    BenchmarkRow('Build search index, $n items (once per app start)', _ms(indexMs), '—', null).toJson(),
+    BenchmarkRow('Add, edit or remove one item in that index', _ms(updateMs), '—', null).toJson(),
     BenchmarkRow('Export 1,000 records as MARC 21', _ms(exportMs), '—', null).toJson(),
   ];
 }

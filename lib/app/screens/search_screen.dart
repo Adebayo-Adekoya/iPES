@@ -64,8 +64,8 @@ class _SearchScreenState extends State<SearchScreen> {
         const SizedBox(height: 10),
         SegmentedButton<SearchMode>(
           segments: const [
-            ButtonSegment(value: SearchMode.hybrid, label: Text('Smart')),
-            ButtonSegment(value: SearchMode.keyword, label: Text('Keywords only')),
+            ButtonSegment(value: SearchMode.hybrid, label: Text('Smart', maxLines: 1, overflow: TextOverflow.ellipsis)),
+            ButtonSegment(value: SearchMode.keyword, label: Text('Keywords', maxLines: 1, overflow: TextOverflow.ellipsis)),
           ],
           selected: {_mode},
           showSelectedIcon: false,
