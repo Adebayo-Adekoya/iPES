@@ -53,12 +53,22 @@ def top3(ranked: list[str], rel: dict[str, int]) -> float:
     return 1.0 if any(rel.get(key, 0) == 2 for key in ranked[:3]) else 0.0
 
 
-def rrf(*lists: list[str]) -> list[str]:
+def rrf(*lists: list[str], weights: tuple[float, ...] | None = None) -> list[str]:
+    weights = weights or tuple(1.0 for _ in lists)
     scores: dict[str, float] = {}
-    for lst in lists:
+    for lst, w in zip(lists, weights):
         for rank, key in enumerate(lst[:100]):
-            scores[key] = scores.get(key, 0.0) + 1.0 / (RRF_K + rank + 1)
+            scores[key] = scores.get(key, 0.0) + w / (RRF_K + rank + 1)
     return [k for k, _ in sorted(scores.items(), key=lambda kv: -kv[1])]
+
+
+# How the keyword and semantic rankings are merged. "equal" is what the app
+# does today; the others give the semantic ranking more say.
+FUSIONS = {
+    "equal": (1.0, 1.0),
+    "semantic x2": (1.0, 2.0),
+    "semantic x3": (1.0, 3.0),
+}
 
 
 def summarise(rows: list[dict], key: str) -> dict:
@@ -137,17 +147,20 @@ def main() -> int:
 
         index = {k: i for i, k in enumerate(keys)}
         sem_key, hyb_key = f"{name}|semantic", f"{name}|hybrid"
+        fusion_keys = {f: f"{name}|fusion:{f}" for f in FUSIONS}
         for row, q, qv in zip(rows, queries, q_vecs):
             rel = {k: int(v) for k, v in q["relevance"].items()}
             allowed = q["allowed"]
             sims = sorted(((float(doc_vecs[index[k]] @ qv), k) for k in allowed), reverse=True)
             semantic = [k for _, k in sims]
-            if q["textEmpty"]:
-                hybrid = q["keyword"]  # facet-only query: the app lists by recency
-            else:
-                hybrid = rrf(q["keyword"], semantic[:SEMANTIC_TOP])
             row[sem_key] = {"ndcg": ndcg_at(semantic, rel), "top3": top3(semantic, rel), "top": semantic[:3]}
-            row[hyb_key] = {"ndcg": ndcg_at(hybrid, rel), "top3": top3(hybrid, rel), "top": hybrid[:3]}
+            for f, w in FUSIONS.items():
+                if q["textEmpty"]:
+                    fused = q["keyword"]  # facet-only query: the app lists by recency
+                else:
+                    fused = rrf(q["keyword"], semantic[:SEMANTIC_TOP], weights=w)
+                row[fusion_keys[f]] = {"ndcg": ndcg_at(fused, rel), "top3": top3(fused, rel), "top": fused[:3]}
+            row[hyb_key] = row[fusion_keys["equal"]]
 
         params = sum(p.numel() for p in model.parameters())
         results["models"][name] = {
@@ -158,6 +171,7 @@ def main() -> int:
             "parameters_millions": round(params / 1e6),
             "semantic": summarise(rows, sem_key),
             "hybrid": summarise(rows, hyb_key),
+            "fusions": {f: summarise(rows, k) for f, k in fusion_keys.items()},
             "ci_cpu_doc_embed_ms": round(doc_secs * 1000 / len(docs), 1),
             "ci_cpu_query_embed_ms": round(q_ms, 1),
         }
@@ -203,6 +217,16 @@ def main() -> int:
         if "skipped" not in m:
             lines.append(f"| {name} | {m['parameters_millions']}M | {m['max_tokens']} | "
                          f"{m['ci_cpu_doc_embed_ms']} ms | {m['ci_cpu_query_embed_ms']} ms |")
+    lines += ["", "Merging rankings: nDCG@10 (lift over keyword) for each way of fusing keyword and semantic results.", "",
+              "| Model | " + " | ".join(FUSIONS) + " | Semantic only |",
+              "| --- | " + " | ".join("---" for _ in FUSIONS) + " | --- |"]
+    for name, m in results["models"].items():
+        if "skipped" in m:
+            continue
+        cells = [f"{m['fusions'][f]['ndcg10']:.3f} ({pct((m['fusions'][f]['ndcg10'] - kw) / kw)})" for f in FUSIONS]
+        cells.append(f"{m['semantic']['ndcg10']:.3f} ({pct((m['semantic']['ndcg10'] - kw) / kw)})")
+        lines.append(f"| {name} | " + " | ".join(cells) + " |")
+    lines += ["", f"With keyword-only at {kw:.3f}, the largest possible lift on this set is {pct((1 - kw) / kw)}."]
     (OUT / "embedding_report.md").write_text("\n".join(lines) + "\n")
     print("\n".join(lines))
     return 0
