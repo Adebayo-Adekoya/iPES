@@ -154,9 +154,10 @@ class Library {
     _indexDirty = false;
   }
 
-  SearchResult search(String query, {int limit = 20, SearchMode mode = SearchMode.hybrid}) {
+  SearchResult search(String query,
+      {int limit = 20, SearchMode mode = SearchMode.hybrid, List<String>? semanticRanking}) {
     _ensureIndex();
-    return engine.search(query, limit: limit, mode: mode);
+    return engine.search(query, limit: limit, mode: mode, semanticRanking: semanticRanking);
   }
 
   /// Serialises [records] in [format]. Text formats are UTF-8 encoded.

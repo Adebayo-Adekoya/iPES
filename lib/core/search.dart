@@ -304,7 +304,10 @@ class SearchEngine {
     return true;
   }
 
-  SearchResult search(String raw, {int limit = 20, SearchMode mode = SearchMode.hybrid}) {
+  /// [semanticRanking]: record ids ordered by an on-device model, best
+  /// first. When given it replaces the built-in meaning-based ranker.
+  SearchResult search(String raw,
+      {int limit = 20, SearchMode mode = SearchMode.hybrid, List<String>? semanticRanking}) {
     final watch = Stopwatch()..start();
     final q = QueryParser.parse(raw);
     bool allowed(CatalogueRecord r) =>
@@ -325,7 +328,19 @@ class SearchEngine {
     }
 
     final keyword = mode == SearchMode.semantic ? <int, double>{} : _bm25(terms, candidates.toSet());
-    final semantic = mode == SearchMode.keyword ? <int, double>{} : _cosine(q.text, candidates);
+    final Map<int, double> semantic;
+    if (mode == SearchMode.keyword) {
+      semantic = {};
+    } else if (semanticRanking != null) {
+      final allowedSlots = candidates.toSet();
+      semantic = {};
+      for (var i = 0; i < semanticRanking.length; i++) {
+        final slot = _slotOf[semanticRanking[i]];
+        if (slot != null && allowedSlots.contains(slot)) semantic[slot] = (semanticRanking.length - i).toDouble();
+      }
+    } else {
+      semantic = _cosine(q.text, candidates);
+    }
 
     final fused = <int, double>{};
     void fuse(Map<int, double> scores) {

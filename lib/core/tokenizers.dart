@@ -199,7 +199,8 @@ class UnigramTokenizer implements Tokenizer {
   String _normalize(String text) {
     var s = _charsMap?.normalize(text) ?? text;
     if (_collapseSpaces) s = s.replaceAll(RegExp(r' {2,}'), ' ');
-    return s;
+    // SentencePiece drops leading and trailing whitespace.
+    return s.replaceAll(RegExp(r'^ +| +$'), '');
   }
 
   /// Metaspace (replacement "▁", add_prefix_space): spaces become "▁", a

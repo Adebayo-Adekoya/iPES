@@ -1,8 +1,13 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../core/benchmark.dart';
+import '../../core/semantic.dart';
+import '../semantic_service.dart';
 import '../shell.dart';
 import '../startup.dart';
 import '../theme.dart';
@@ -17,9 +22,12 @@ Future<List<Map<String, Object?>>> runInBackground(Stage stage, int arg) => comp
 
 /// Measures this device against the spec's performance targets (section 10).
 class DeviceCheckPage extends StatefulWidget {
-  const DeviceCheckPage({super.key, this.runner = runInBackground, this.searchItems = 20000});
+  const DeviceCheckPage({super.key, this.runner = runInBackground, this.searchItems = 20000, this.semantic});
   final StageRunner runner;
   final int searchItems;
+
+  /// When given, downloaded search models are tested too.
+  final SemanticService? semantic;
 
   @override
   State<DeviceCheckPage> createState() => _DeviceCheckPageState();
@@ -71,16 +79,86 @@ class _DeviceCheckPageState extends State<DeviceCheckPage> {
       });
       final search = await widget.runner(benchmarkSearch, widget.searchItems);
       if (!mounted) return;
-      setState(() {
-        rows = [...rows, ...search.map(BenchmarkRow.fromJson)];
-        running = null;
-      });
+      setState(() => rows = [...rows, ...search.map(BenchmarkRow.fromJson)]);
+      await _runModels();
+      if (!mounted) return;
+      setState(() => running = null);
     } catch (e) {
       if (!mounted) return;
       setState(() {
         error = 'The check stopped: $e';
         running = null;
       });
+    }
+  }
+
+  /// Tests each downloaded search model: load time, agreement with the
+  /// reference vectors computed in CI, speed, and search quality on the
+  /// sample library with the judged queries.
+  Future<void> _runModels() async {
+    final s = widget.semantic;
+    if (s == null || !s.enabled) return;
+    Map<String, dynamic> reference = {};
+    try {
+      reference = jsonDecode(await rootBundle.loadString('assets/model_reference.json')) as Map<String, dynamic>;
+    } catch (_) {}
+    for (final spec in ModelSpec.all) {
+      if (!mounted) return;
+      if (s.state[spec.id] != ModelState.downloaded) {
+        setState(() => rows = [
+              ...rows,
+              BenchmarkRow('${spec.name}: not downloaded (Search › Search model)', '—', '—', null),
+            ]);
+        continue;
+      }
+      setState(() => running = 'Loading ${spec.name}…');
+      final loadWatch = Stopwatch()..start();
+      final model = await s.loadForTest(spec);
+      if (model == null) continue;
+      final loadMs = loadWatch.elapsedMicroseconds / 1000;
+      final owned = !identical(model, s.activeModel);
+      try {
+        var minCos = 1.0;
+        final ref = reference[spec.id] as Map<String, dynamic>?;
+        if (ref != null) {
+          final texts = (ref['texts'] as List).cast<String>();
+          final vectors = ref['vectors'] as List;
+          for (var i = 0; i < texts.length; i++) {
+            final v = await model.embed(texts[i]);
+            final want = Float32List.fromList((vectors[i] as List).cast<num>().map((x) => x.toDouble()).toList());
+            final c = dot(v, want);
+            if (c < minCos) minCos = c;
+          }
+        }
+        final (quality, timings) = await evaluateModelOnSamples(model, progress: (p) {
+          if (mounted) setState(() => running = '${spec.name}: $p');
+        });
+        final item = ModelTimings.median(timings.itemMs);
+        final query = ModelTimings.median(timings.queryMs);
+        String ms(double v) => v >= 1000 ? '${(v / 1000).toStringAsFixed(2)} s' : '${v.round()} ms';
+        String pct(double v) => '${(v * 100).toStringAsFixed(1)}%';
+        if (!mounted) return;
+        setState(() => rows = [
+              ...rows,
+              BenchmarkRow('${spec.name}: load model', ms(loadMs), '—', null),
+              if (ref != null)
+                BenchmarkRow('${spec.name}: matches reference (lowest cosine of 6)', minCos.toStringAsFixed(4), '≥ 0.99',
+                    minCos >= 0.99),
+              BenchmarkRow('${spec.name}: embed one item (median of 38)', ms(item), '—', null),
+              BenchmarkRow('${spec.name}: embed one query (median of 38)', ms(query), '—', null),
+              BenchmarkRow('${spec.name}: index 1,000 items (estimate)', ms(item * 1000), '—', null),
+              BenchmarkRow('${spec.name}: search quality nDCG@10', quality.ndcg.toStringAsFixed(3), '≥ 0.90 (proposed)',
+                  quality.ndcg >= 0.90),
+              BenchmarkRow('${spec.name}: different-wording queries nDCG@10', quality.ndcgMeaning.toStringAsFixed(3),
+                  '≥ 0.85 (proposed)', quality.ndcgMeaning >= 0.85),
+              BenchmarkRow('${spec.name}: known item in top 3', pct(quality.top3), '≥ 90%', quality.top3 >= 0.9),
+              BenchmarkRow('${spec.name}: lift over keyword search', pct(quality.lift), '≥ 15%', quality.lift >= 0.15),
+            ]);
+      } catch (e) {
+        if (mounted) setState(() => rows = [...rows, BenchmarkRow('${spec.name}: test failed — $e', '—', '—', false)]);
+      } finally {
+        if (owned) await model.close();
+      }
     }
   }
 

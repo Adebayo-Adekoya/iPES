@@ -8,6 +8,9 @@ import '../core/library.dart';
 import '../core/record.dart';
 import '../core/sample/corpus.dart';
 import '../core/search.dart';
+import 'dart:async' show unawaited;
+
+import 'semantic_service.dart';
 import 'services.dart';
 import 'startup.dart';
 
@@ -18,7 +21,11 @@ class ImportReport {
 }
 
 class LibraryController extends ChangeNotifier {
-  LibraryController({required this.library, required this.files});
+  LibraryController({required this.library, required this.files, SemanticService? semantic})
+      : semantic = semantic ?? SemanticService.disabled();
+
+  /// On-device search models (download, choice, background indexing).
+  final SemanticService semantic;
 
   final Library library;
   final FileService files;
@@ -57,7 +64,10 @@ class LibraryController extends ChangeNotifier {
         if (i < samples.length - 3) library.confirm(outcome.record);
       }
       await library.save();
+    unawaited(semantic.sync(records));
     }
+    await semantic.start();
+    if (semantic.activeId != null) unawaited(semantic.sync(records));
     loading = false;
     notifyListeners();
   }
@@ -84,6 +94,7 @@ class LibraryController extends ChangeNotifier {
       }
     }
     await library.save();
+    unawaited(semantic.sync(records));
     notifyListeners();
     return ImportReport(added, dupes);
   }
@@ -93,6 +104,7 @@ class LibraryController extends ChangeNotifier {
   Future<void> confirm(CatalogueRecord r) async {
     library.confirm(r);
     await library.save();
+    unawaited(semantic.sync(records));
     notifyListeners();
   }
 
@@ -103,6 +115,7 @@ class LibraryController extends ChangeNotifier {
     r.set(element, [for (final p in parts) FieldValue(p)]);
     library.updated(r);
     await library.save();
+    unawaited(semantic.sync(records));
     notifyListeners();
   }
 
@@ -110,6 +123,7 @@ class LibraryController extends ChangeNotifier {
     r.classNumber = number;
     library.updated(r);
     await library.save();
+    unawaited(semantic.sync(records));
     notifyListeners();
   }
 
@@ -117,10 +131,18 @@ class LibraryController extends ChangeNotifier {
     library.remove(r.id);
     if (selectedId == r.id) selectedId = null;
     await library.save();
+    unawaited(semantic.sync(records));
     notifyListeners();
   }
 
-  SearchResult search(String q, {SearchMode mode = SearchMode.hybrid}) => library.search(q, mode: mode);
+  SearchResult search(String q, {SearchMode mode = SearchMode.hybrid, List<String>? semanticRanking}) =>
+      library.search(q, mode: mode, semanticRanking: semanticRanking);
+
+  /// Search that uses the chosen on-device model when it is ready.
+  Future<SearchResult> smartSearch(String q, {SearchMode mode = SearchMode.hybrid}) async {
+    final ranking = mode == SearchMode.keyword ? null : await semantic.rank(q);
+    return search(q, mode: mode, semanticRanking: ranking);
+  }
 
   Uint8List export(List<CatalogueRecord> records, ExportFormat format) => library.export(records, format);
 

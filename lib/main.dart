@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'app/controller.dart';
+import 'app/semantic_service.dart';
 import 'app/services.dart';
 import 'app/shell.dart';
 import 'app/startup.dart';
@@ -12,6 +13,7 @@ Future<void> main() async {
   final controller = LibraryController(
     library: Library(storage: defaultStorage()),
     files: PlatformFileService(),
+    semantic: SemanticService(),
   );
   runApp(IpesApp(controller: controller));
   binding.waitUntilFirstFrameRasterized.then((_) {

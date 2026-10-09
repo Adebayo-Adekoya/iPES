@@ -4,6 +4,7 @@ import '../../core/record.dart';
 import '../../core/search.dart';
 import '../controller.dart';
 import '../theme.dart';
+import 'search_models.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key, required this.controller, required this.onOpen});
@@ -26,10 +27,22 @@ class _SearchScreenState extends State<SearchScreen> {
     'power bill',
   ];
 
-  void _run([String? q]) {
+  bool _busy = false;
+
+  Future<void> _run([String? q]) async {
     if (q != null) _query.text = q;
     final text = _query.text.trim();
-    setState(() => _result = text.isEmpty ? null : widget.controller.search(text, mode: _mode));
+    if (text.isEmpty) {
+      setState(() => _result = null);
+      return;
+    }
+    setState(() => _busy = true);
+    final result = await widget.controller.smartSearch(text, mode: _mode);
+    if (!mounted) return;
+    setState(() {
+      _result = result;
+      _busy = false;
+    });
   }
 
   @override
@@ -75,7 +88,23 @@ class _SearchScreenState extends State<SearchScreen> {
             _run();
           },
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 8),
+        ListenableBuilder(
+          listenable: widget.controller.semantic,
+          builder: (context, _) => Align(
+            alignment: Alignment.centerLeft,
+            child: TextButton.icon(
+              key: const Key('search-model-button'),
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(
+                builder: (_) => SearchModelsPage(controller: widget.controller),
+              )),
+              icon: const Icon(Icons.memory, size: 18),
+              label: Text(widget.controller.semantic.statusLine),
+            ),
+          ),
+        ),
+        if (_busy) const LinearProgressIndicator(),
+        const SizedBox(height: 4),
         if (result == null) ...[
           const Text('Try', style: TextStyle(color: IpesColors.muted)),
           const SizedBox(height: 6),

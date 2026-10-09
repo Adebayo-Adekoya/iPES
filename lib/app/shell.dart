@@ -76,7 +76,7 @@ class _AdaptiveShellState extends State<AdaptiveShell> {
 
   void _openDeviceCheck() {
     ScaffoldMessenger.of(context).clearSnackBars();
-    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const DeviceCheckPage()));
+    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => DeviceCheckPage(semantic: c.semantic)));
   }
 
   void _open(CatalogueRecord r, WindowSize size) {

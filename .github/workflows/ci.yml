@@ -85,7 +85,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          flutter test test/core test/widget --coverage --reporter expanded | tee build/eval/tests.txt
+          flutter test test/core test/app test/widget --coverage --reporter expanded | tee build/eval/tests.txt
 
       - name: Coverage of core library
         if: always()
